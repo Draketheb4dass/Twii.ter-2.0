@@ -23,6 +23,7 @@ public class TimelineActivity extends AppCompatActivity {
     TwiitAdapter twiitAdapter;
     ArrayList<Twiit> twiits;
     RecyclerView rvTwiits;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
 
     @Override
@@ -36,11 +37,34 @@ public class TimelineActivity extends AppCompatActivity {
         twiits = new ArrayList<>();
         //construct the adapter form data source
         twiitAdapter = new TwiitAdapter((twiits));
-
         //RecyclerView setup (layout manager, use adapter)
-        rvTwiits.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this);
+        rvTwiits.setLayoutManager(linearLayoutManager);
+        // Retain an instance so that you can call `resetState()` for fresh searches
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                populateTimeline();
+                loadNextDataFromApi(page);
+            }
+        };
+        // Adds the scroll listener to RecyclerView
+        rvTwiits.addOnScrollListener(scrollListener);
         //set the adapter
         rvTwiits.setAdapter(twiitAdapter);
+        populateTimeline();
+    }
+
+    // Append the next page of data into the adapter
+    // This method probably sends out a network request and appends new data items to your adapter.
+    public void loadNextDataFromApi(int offset) {
+        // Send an API request to retrieve appropriate paginated data
+        //  --> Send the request including an offset value (i.e `page`) as a query parameter.
+        //  --> Deserialize and construct new model objects from the API response
+        //  --> Append the new data objects to the existing set of items inside the array of items
+        //  --> Notify the adapter of the new items made with `notifyItemRangeInserted()`
         populateTimeline();
     }
 
