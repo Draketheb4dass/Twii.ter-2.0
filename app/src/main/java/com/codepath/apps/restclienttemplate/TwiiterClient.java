@@ -44,6 +44,7 @@ public class TwiiterClient extends OAuthBaseClient {
 	}
 	// CHANGE THIS
 	// DEFINE METHODS for different API endpoints here
+    //TODO Modify methods to accept an index value
 	public void getHomeTimeline(AsyncHttpResponseHandler handler) {
 		String apiUrl =
                 getApiUrl("statuses/home_timeline.json");
