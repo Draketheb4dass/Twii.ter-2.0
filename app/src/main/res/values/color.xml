@@ -8,6 +8,7 @@
     <color name="colorSecondary">#14171a</color>
     <color name="colorPrimaryText">#263238</color>
     <color name="colorSecondaryText">#e0e0e0</color>
+    <color name="divider">#797878</color>
     <color name="white">#ffffff</color>
     <color name="DarkGray">#657786</color>
     <color name="LightGray">#AAB8C2</color>

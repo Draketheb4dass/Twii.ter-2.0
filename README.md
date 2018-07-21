@@ -48,6 +48,7 @@ The following **additional** features are implemented:
 * [x] List anything else that you can get done to improve the app functionality!
  * [x] Splash Screen and App icon added.
  * [x] App theme applied.
+ * [x] Use Lambdas Expression
 
 ## Video Walkthrough
 
