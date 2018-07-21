@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.codepath.apps.restclienttemplate.models.Twiit;
@@ -18,18 +19,25 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class TimelineActivity extends AppCompatActivity {
+public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener{
     TwiiterClient client;
     TwiitAdapter twiitAdapter;
     ArrayList<Twiit> twiits;
     RecyclerView rvTwiits;
     private EndlessRecyclerViewScrollListener scrollListener;
+    Toolbar myToolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+        //Set custom AppBar
+        myToolbar = findViewById(R.id.timeline_toolbar);
+        myToolbar.inflateMenu(R.menu.menu_search);
+        setSupportActionBar(myToolbar);
+        myToolbar.setOnMenuItemClickListener(this);
+
         client = TwiiterApp.getRestClient(getBaseContext());
         // find the recyclerView
         rvTwiits = findViewById(R.id.rvTweet);

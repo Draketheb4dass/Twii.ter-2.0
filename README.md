@@ -45,7 +45,9 @@ The following **bonus** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [x] List anything else that you can get done to improve the app functionality!
+ * [x] Splash Screen and App icon added.
+ * [x] App theme applied.
 
 ## Video Walkthrough
 

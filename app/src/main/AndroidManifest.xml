@@ -28,7 +28,8 @@
                     android:scheme="@string/intent_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".TimelineActivity"></activity>
+        <activity android:name=".TimelineActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
