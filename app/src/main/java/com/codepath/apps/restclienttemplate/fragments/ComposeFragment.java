@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.R;
@@ -21,9 +22,8 @@ import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
+//todo show image profile and username
 public class ComposeFragment extends DialogFragment {
-    static private HashMap<String, String> o = new HashMap<>();
-    private Button mBtnSubmitTwiit;
     static EditText etTwiit;
     TwiiterClient client;
 
@@ -53,7 +53,7 @@ public class ComposeFragment extends DialogFragment {
         getDialog().setTitle(title);
 
         //Send data back to fragment
-        mBtnSubmitTwiit = view.findViewById(R.id.btnSubmit);
+        Button mBtnSubmitTwiit = view.findViewById(R.id.btnSubmit);
         mBtnSubmitTwiit.setOnClickListener(
                 v -> {
                     //TODO upload twiit and dismiss Dialog
@@ -61,19 +61,28 @@ public class ComposeFragment extends DialogFragment {
                     String status = etTwiit.getText().toString();
                     client.postStatus(new AsyncHttpResponseHandler() {
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
+                        public void onSuccess(int statusCode,
+                                              Header[] headers,
+                                              byte[] responseBody) {
                         }
 
                         @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                        public void onFailure(int statusCode,
+                                              Header[] headers,
+                                              byte[] responseBody,
+                                              Throwable error) {
                         }
                     }, status);
 
                     dismiss();
                 }
         );
+        ImageButton btnCancel = view.findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(v -> {
+            //dismiss Dialog
+            dismiss();
+        });
+
     }
 
 

@@ -87,7 +87,6 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
                ComposeFragment composeFragment =
                         ComposeFragment.newInstance("Send a twiit");
                composeFragment.show(fm, "fragment_compose");
-                Toast.makeText(this, "Compose", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return true;
