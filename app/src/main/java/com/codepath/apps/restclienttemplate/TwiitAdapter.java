@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.models.Twiit;
 
 import java.text.ParseException;
@@ -52,6 +55,8 @@ public class TwiitAdapter extends RecyclerView.Adapter<TwiitAdapter.ViewHolder>{
         holder.tvTimestamp.setText(getRelativeTimeAgo(twiit.createdAt));
         Glide.with(context)
                 .load(twiit.user.profileImageUrl)
+                .apply(new RequestOptions().transforms(new CenterCrop(),
+                        new RoundedCorners(10)))
                 .into(holder.ivProfileImage);
     }
 

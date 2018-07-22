@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.MainThread;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.content.res.AppCompatResources;
@@ -38,6 +39,7 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
     RecyclerView rvTwiits;
     private EndlessRecyclerViewScrollListener scrollListener;
     Toolbar myToolbar;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     @Override
