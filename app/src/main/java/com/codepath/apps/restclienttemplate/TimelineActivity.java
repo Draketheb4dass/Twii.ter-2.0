@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.models.Twiit;
 import com.github.scribejava.apis.TwitterApi;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -81,11 +82,11 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
         switch (item.getItemId()) {
             //Filter Intent
             case R.id.action_compose:
-                //Show FilterDialogFragment
-               // FragmentManager fm = getSupportFragmentManager();
-               // FilterDialogFragment filterDialogFragment =
-               //         FilterDialogFragment.newInstance("Filter Search by");
-               // filterDialogFragment.show(fm, "fragment_filter_search");
+                //Show ComposeFragment
+               FragmentManager fm = getSupportFragmentManager();
+               ComposeFragment composeFragment =
+                        ComposeFragment.newInstance("Send a twiit");
+               composeFragment.show(fm, "fragment_compose");
                 Toast.makeText(this, "Compose", Toast.LENGTH_SHORT).show();
                 return true;
         }

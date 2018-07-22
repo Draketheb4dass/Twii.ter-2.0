@@ -9,16 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.TwiiterApp;
+import com.codepath.apps.restclienttemplate.TwiiterClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.util.HashMap;
+import java.util.Objects;
+
+import cz.msebera.android.httpclient.Header;
 
 public class ComposeFragment extends DialogFragment {
-    static private HashMap<String, String> filter = new HashMap<>();
+    static private HashMap<String, String> o = new HashMap<>();
     private Button mBtnSubmitTwiit;
-    static EditText etDate;
-    static  String beginDate="";
+    static EditText etTwiit;
+    TwiiterClient client;
 
     public ComposeFragment() {} //Empty Constructor is required for DialogFragment
 
@@ -39,18 +46,32 @@ public class ComposeFragment extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        client = TwiiterApp.getRestClient(getContext());
 
         assert getArguments() != null;
         String title = getArguments().getString("title", "Compose a twiit");
         getDialog().setTitle(title);
 
-
         //Send data back to fragment
         mBtnSubmitTwiit = view.findViewById(R.id.btnSubmit);
         mBtnSubmitTwiit.setOnClickListener(
                 v -> {
-                    //TODO get DialogFragment data and put it in Hashmap filter
+                    //TODO upload twiit and dismiss Dialog
+                    etTwiit = view.findViewById(R.id.etTwiit);
+                    String status = etTwiit.getText().toString();
+                    client.postStatus(new AsyncHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                        }
+                    }, status);
+
+                    dismiss();
                 }
         );
     }
@@ -62,17 +83,9 @@ public class ComposeFragment extends DialogFragment {
         //Change FilterFragmentDialog size
         int width = getResources().getDimensionPixelSize(R.dimen.popup_width);
         int height = getResources().getDimensionPixelSize(R.dimen.popup_height);
-        getDialog().getWindow().setLayout(width, height);
+        Objects.requireNonNull(getDialog().getWindow())
+                .setLayout(width, height);
     }
-
-    //Defines the listener interface with a method passing back data result.
-    public interface ComposeListener{
-        void onFinishFilterDialog(HashMap<String, String> filter);
-    }
-
-
-
-
 
 }
 

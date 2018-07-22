@@ -55,6 +55,14 @@ public class TwiiterClient extends OAuthBaseClient {
 		client.get(apiUrl, params, handler);
 	}
 
+	public  void postStatus(AsyncHttpResponseHandler handler, String status) {
+	    String apiUrl = getApiUrl("statuses/update.json");
+        // Can specify query string params directly or through RequestParams.
+        RequestParams params = new RequestParams();
+        params.put("status", status);
+        client.post(apiUrl, params, handler);
+    }
+
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
 	 * 	  i.e getApiUrl("statuses/home_timeline.json");
 	 * 2. Define the parameters to pass to the request (query or body)
@@ -63,4 +71,5 @@ public class TwiiterClient extends OAuthBaseClient {
 	 *    i.e client.get(apiUrl, params, handler);
 	 *    i.e client.post(apiUrl, params, handler);
 	 */
+
 }
