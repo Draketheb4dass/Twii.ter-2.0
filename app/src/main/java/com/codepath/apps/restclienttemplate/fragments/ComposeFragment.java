@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TimelineActivity;
 import com.codepath.apps.restclienttemplate.TwiiterApp;
@@ -27,6 +29,7 @@ import cz.msebera.android.httpclient.Header;
 public class ComposeFragment extends DialogFragment {
     static EditText etTwiit;
     TwiiterClient client;
+    ImageView profileImage;
 
     public ComposeFragment() {} //Empty Constructor is required for DialogFragment
 
@@ -48,6 +51,10 @@ public class ComposeFragment extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         client = TwiiterApp.getRestClient(getContext());
+
+       // profileImage = view.findViewById(R.id.ivProfileImage);
+       // Glide.with(getContext())
+       //         .load(twiit.user.profileImageUrl).into(profileImage);
 
         assert getArguments() != null;
         String title = getArguments().getString("title", "Compose a twiit");

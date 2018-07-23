@@ -2,10 +2,13 @@ package com.codepath.apps.restclienttemplate.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 /**
  * Created by drake on 7/18/18
  */
+
+@Parcel
 public class User {
     //Attributes
     public String name;
