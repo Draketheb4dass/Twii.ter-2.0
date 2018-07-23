@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.TimelineActivity;
 import com.codepath.apps.restclienttemplate.TwiiterApp;
 import com.codepath.apps.restclienttemplate.TwiiterClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;

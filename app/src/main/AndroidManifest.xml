@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".TimelineActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">

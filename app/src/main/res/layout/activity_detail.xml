@@ -20,23 +20,39 @@
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="27dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="54dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <TextView
         android:id="@+id/tvBody"
         android:layout_width="336dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivDetailImage"
+        android:layout_width="0dp"
+        android:layout_height="193dp"
+        android:layout_marginTop="40dp"
+        android:src="@mipmap/ic_twit_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvBody" />
 </android.support.constraint.ConstraintLayout>

@@ -1,26 +1,18 @@
 package com.codepath.apps.restclienttemplate;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.MainThread;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.models.Twiit;
-import com.github.scribejava.apis.TwitterApi;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -28,7 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -105,7 +96,7 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
         populateTimeline();
     }
 
-    private void populateTimeline() {
+    public void populateTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
