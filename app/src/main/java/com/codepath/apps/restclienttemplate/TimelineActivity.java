@@ -72,15 +72,11 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
 
         //Floating Action Button implementation
         final FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                FragmentManager fm = getSupportFragmentManager();
-                ComposeFragment composeFragment =
-                        ComposeFragment.newInstance("Send a twiit");
-                composeFragment.show(fm, "fragment_compose");
-            }
+        fab.setOnClickListener(view -> {
+            FragmentManager fm = getSupportFragmentManager();
+            ComposeFragment composeFragment =
+                    ComposeFragment.newInstance("Send a twiit");
+            composeFragment.show(fm, "fragment_compose");
         });
     }
 
