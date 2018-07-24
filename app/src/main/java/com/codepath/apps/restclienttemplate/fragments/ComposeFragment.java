@@ -29,7 +29,11 @@ public class ComposeFragment extends DialogFragment {
 
     public ComposeFragment() {} //Empty Constructor is required for DialogFragment
 
+    //Define listener
+    public interface ComposeListener {
+        void onStatusPosted(String status);
 
+    }
 
     public static ComposeFragment newInstance(String title) {
         ComposeFragment frag = new ComposeFragment();
@@ -63,24 +67,30 @@ public class ComposeFragment extends DialogFragment {
         mBtnSubmitTwiit.setOnClickListener(
                 v -> {
                     //TODO upload twiit and dismiss Dialog
+                   //etTwiit = view.findViewById(R.id.etTwiit);
+                   //String status = etTwiit.getText().toString();
+                   //client.postStatus(new AsyncHttpResponseHandler() {
+                   //    @Override
+                   //    public void onSuccess(int statusCode,
+                   //                          Header[] headers,
+                   //                          byte[] responseBody) {
+                   //    }
+
+                   //    @Override
+                   //    public void onFailure(int statusCode,
+                   //                          Header[] headers,
+                   //                          byte[] responseBody,
+                   //                          Throwable error) {
+                   //    }
+                   //}, status);
                     etTwiit = view.findViewById(R.id.etTwiit);
                     String status = etTwiit.getText().toString();
-                    client.postStatus(new AsyncHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(int statusCode,
-                                              Header[] headers,
-                                              byte[] responseBody) {
-                        }
-
-                        @Override
-                        public void onFailure(int statusCode,
-                                              Header[] headers,
-                                              byte[] responseBody,
-                                              Throwable error) {
-                        }
-                    }, status);
-
+                    ComposeListener listener = (ComposeListener) getActivity();
+                    assert listener != null;
+                    listener.onStatusPosted(status);
                     dismiss();
+
+                   //dismiss();
                 }
         );
         ImageButton btnCancel = view.findViewById(R.id.btnCancel);

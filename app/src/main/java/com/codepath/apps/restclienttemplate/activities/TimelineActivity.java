@@ -5,12 +5,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.codepath.apps.restclienttemplate.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.restclienttemplate.R;
@@ -19,6 +21,7 @@ import com.codepath.apps.restclienttemplate.TwiiterApp;
 import com.codepath.apps.restclienttemplate.TwiiterClient;
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.models.Twiit;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -29,7 +32,11 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener{
+import static android.support.v7.widget.RecyclerView.HORIZONTAL;
+
+public class TimelineActivity extends AppCompatActivity
+        implements Toolbar.OnMenuItemClickListener,
+        ComposeFragment.ComposeListener{
     TwiiterClient client;
     TwiitAdapter twiitAdapter;
     ArrayList<Twiit> twiits;
@@ -51,6 +58,8 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
         client = TwiiterApp.getRestClient(getBaseContext());
         // find the recyclerView
         rvTwiits = findViewById(R.id.rvTweet);
+        DividerItemDecoration itemDecor = new DividerItemDecoration(this, HORIZONTAL);
+        rvTwiits.addItemDecoration(itemDecor);
         //init the arrayList (data source)
         twiits = new ArrayList<>();
         //construct the adapter form data source
@@ -151,6 +160,31 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
     public boolean onCreateOptionsMenu(Menu menu) {
 
         return true;
+    }
+
+    @Override
+    public void onStatusPosted(String status) {
+        postStatus(status);
+        this.populateTimeline();
+
+    }
+
+    public void postStatus(String status) {
+        client.postStatus(new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody) {
+            }
+
+            @Override
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody,
+                                  Throwable error) {
+            }
+        }, status);
+
     }
 
 }

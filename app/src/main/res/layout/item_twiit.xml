@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:textColor="#000000"
         android:layout_alignStart="@id/tvBodyDetail"
         android:layout_toEndOf="@+id/ivProfileImageDetail"
         android:text="TextView" />
@@ -41,4 +42,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:text="TextView" />
+
+
 </RelativeLayout>
