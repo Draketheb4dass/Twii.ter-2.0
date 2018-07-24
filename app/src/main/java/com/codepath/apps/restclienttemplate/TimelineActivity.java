@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.models.Twiit;
@@ -66,21 +69,24 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
         //set the adapter
         rvTwiits.setAdapter(twiitAdapter);
         populateTimeline();
+
+        //Floating Action Button implementation
+        final FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getSupportFragmentManager();
+                ComposeFragment composeFragment =
+                        ComposeFragment.newInstance("Send a twiit");
+                composeFragment.show(fm, "fragment_compose");
+            }
+        });
     }
 
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            //Filter Intent
-            case R.id.action_compose:
-                //Show ComposeFragment
-               FragmentManager fm = getSupportFragmentManager();
-               ComposeFragment composeFragment =
-                        ComposeFragment.newInstance("Send a twiit");
-               composeFragment.show(fm, "fragment_compose");
-                return true;
-        }
         return true;
     }
 
@@ -144,8 +150,7 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_timeline, menu);
+
         return true;
     }
 
