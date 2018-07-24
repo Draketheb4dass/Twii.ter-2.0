@@ -4,8 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -22,6 +25,7 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
     TextView tvBody;
     TextView tvName;
     ImageView ivDetailImage;
+    ImageButton ibReply;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,14 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
         tvName = findViewById(R.id.tvNameDetail);
         tvName.setText(twiit.user.name);
         ivDetailImage = findViewById(R.id.ivDetailImage);
+
+        ibReply = findViewById(R.id.ib_Reply);
+        ibReply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DetailActivity.this, "reply", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }

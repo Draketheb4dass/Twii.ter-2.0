@@ -58,8 +58,6 @@ public class TimelineActivity extends AppCompatActivity
         client = TwiiterApp.getRestClient(getBaseContext());
         // find the recyclerView
         rvTwiits = findViewById(R.id.rvTweet);
-        DividerItemDecoration itemDecor = new DividerItemDecoration(this, HORIZONTAL);
-        rvTwiits.addItemDecoration(itemDecor);
         //init the arrayList (data source)
         twiits = new ArrayList<>();
         //construct the adapter form data source
@@ -68,7 +66,8 @@ public class TimelineActivity extends AppCompatActivity
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this);
         rvTwiits.setLayoutManager(linearLayoutManager);
         // Retain an instance so that you can call `resetState()` for fresh searches
-        EndlessRecyclerViewScrollListener scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+        EndlessRecyclerViewScrollListener scrollListener =
+                new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 // Triggered only when new data needs to be appended to the list
@@ -137,18 +136,27 @@ public class TimelineActivity extends AppCompatActivity
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  String responseString,
+                                  Throwable throwable) {
                 Log.d("TwiiterClient", responseString);
                 throwable.printStackTrace();
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  Throwable throwable,
+                                  JSONObject errorResponse) {
                     Log.d("TwiiterClient", errorResponse.toString());
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  Throwable throwable,
+                                  JSONArray errorResponse) {
                     Log.d("TwiiterClient", errorResponse.toString());
             }
         });
@@ -165,7 +173,8 @@ public class TimelineActivity extends AppCompatActivity
     @Override
     public void onStatusPosted(String status) {
         postStatus(status);
-        this.populateTimeline();
+        populateTimeline();
+
 
     }
 
@@ -184,7 +193,7 @@ public class TimelineActivity extends AppCompatActivity
                                   Throwable error) {
             }
         }, status);
-
+        populateTimeline();
     }
 
 }

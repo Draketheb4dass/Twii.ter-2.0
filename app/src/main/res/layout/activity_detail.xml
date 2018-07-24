@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/ivProfileImageDetail"
         android:layout_width="84dp"
-        android:layout_height="71dp"
+        android:layout_height="84dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,8 +23,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
-        android:textStyle="bold"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImageDetail"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,10 +42,10 @@
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:textSize="20dp"
-        android:textColor="#000000"
         android:autoLink="web"
         android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,4 +59,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvBodyDetail" />
+
+    <ImageButton
+        android:id="@+id/ib_Reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="316dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ibRetweet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBodyDetail"
+        app:layout_constraintVertical_bias="0.0"
+        android:src="@drawable/ic_reply" />
+
+    <ImageButton
+        android:id="@+id/ibRetweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/ibFav"
+        app:layout_constraintStart_toEndOf="@+id/ib_Reply"
+        app:layout_constraintTop_toBottomOf="@+id/tvBodyDetail"
+        android:src="@drawable/ic_retweet" />
+
+    <ImageButton
+        android:id="@+id/ibFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/ibShare"
+        app:layout_constraintStart_toEndOf="@+id/ibRetweet"
+        app:layout_constraintTop_toBottomOf="@+id/tvBodyDetail"
+        android:src="@drawable/ic_fav" />
+
+    <ImageButton
+        android:id="@+id/ibShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ibFav"
+        app:layout_constraintTop_toBottomOf="@+id/tvBodyDetail"
+        android:src="@drawable/ic_share"/>
+
 </android.support.constraint.ConstraintLayout>

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwiiterApp;
 import com.codepath.apps.restclienttemplate.TwiiterClient;
+import com.codepath.apps.restclienttemplate.activities.TimelineActivity;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.util.Objects;
@@ -66,31 +67,12 @@ public class ComposeFragment extends DialogFragment {
         Button mBtnSubmitTwiit = view.findViewById(R.id.btnSubmit);
         mBtnSubmitTwiit.setOnClickListener(
                 v -> {
-                    //TODO upload twiit and dismiss Dialog
-                   //etTwiit = view.findViewById(R.id.etTwiit);
-                   //String status = etTwiit.getText().toString();
-                   //client.postStatus(new AsyncHttpResponseHandler() {
-                   //    @Override
-                   //    public void onSuccess(int statusCode,
-                   //                          Header[] headers,
-                   //                          byte[] responseBody) {
-                   //    }
-
-                   //    @Override
-                   //    public void onFailure(int statusCode,
-                   //                          Header[] headers,
-                   //                          byte[] responseBody,
-                   //                          Throwable error) {
-                   //    }
-                   //}, status);
                     etTwiit = view.findViewById(R.id.etTwiit);
                     String status = etTwiit.getText().toString();
                     ComposeListener listener = (ComposeListener) getActivity();
                     assert listener != null;
                     listener.onStatusPosted(status);
                     dismiss();
-
-                   //dismiss();
                 }
         );
         ImageButton btnCancel = view.findViewById(R.id.btnCancel);
@@ -99,6 +81,10 @@ public class ComposeFragment extends DialogFragment {
             dismiss();
         });
 
+    }
+
+    public void onDismiss(){
+        dismiss();
     }
 
 
