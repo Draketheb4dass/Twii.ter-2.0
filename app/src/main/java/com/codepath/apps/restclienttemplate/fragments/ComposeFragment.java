@@ -11,16 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.R;
-import com.codepath.apps.restclienttemplate.TimelineActivity;
 import com.codepath.apps.restclienttemplate.TwiiterApp;
 import com.codepath.apps.restclienttemplate.TwiiterClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import java.util.HashMap;
 import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
@@ -32,6 +28,8 @@ public class ComposeFragment extends DialogFragment {
     ImageView profileImage;
 
     public ComposeFragment() {} //Empty Constructor is required for DialogFragment
+
+
 
     public static ComposeFragment newInstance(String title) {
         ComposeFragment frag = new ComposeFragment();
