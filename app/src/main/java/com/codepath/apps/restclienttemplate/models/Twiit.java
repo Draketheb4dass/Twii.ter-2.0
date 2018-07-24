@@ -4,6 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+import java.util.ArrayList;
+
 /**
  * Created by drake on 7/18/18
  */
@@ -14,6 +16,7 @@ public class Twiit {
     public long uid; //DB id of the tweet
     public User user;
     public String createdAt;
+    public ArrayList<String> extendedEntities;
 
     public Twiit() {} //Empty public constructor for parceler
 
@@ -26,6 +29,7 @@ public class Twiit {
         twiit.uid = jsonObject.getLong("id");
         twiit.createdAt = jsonObject.getString("created_at");
         twiit.user = User.fromJSON(jsonObject.getJSONObject("user"));
+        //twiit.extendedEntities = ExtendedEntities.fromJSON
         return twiit;
 
     }

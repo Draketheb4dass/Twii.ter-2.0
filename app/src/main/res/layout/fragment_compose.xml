@@ -84,8 +84,7 @@
         android:layout_below="@+id/tvNameDetail"
         android:layout_marginEnd="5dp"
         android:layout_toStartOf="@+id/imageView"
-        android:text="Username"
-        tools:text="@string/username" />
+        android:text="@string/username" />
 
     <View
         android:id="@+id/divider"
