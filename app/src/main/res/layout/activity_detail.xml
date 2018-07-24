@@ -7,7 +7,7 @@
     tools:context=".DetailActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ivProfileImageDetail"
         android:layout_width="84dp"
         android:layout_height="71dp"
         android:layout_marginStart="16dp"
@@ -17,30 +17,34 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvNameDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImageDetail"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvUsername"
+        android:id="@+id/tvUsernameDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImageDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvNameDetail" />
 
     <TextView
-        android:id="@+id/tvBody"
+        android:id="@+id/tvBodyDetail"
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:autoLink="web"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,8 +55,8 @@
         android:layout_width="0dp"
         android:layout_height="193dp"
         android:layout_marginTop="40dp"
-        android:src="@mipmap/ic_twit_logo"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvBody" />
+        app:layout_constraintTop_toTopOf="@+id/tvBodyDetail" />
 </android.support.constraint.ConstraintLayout>

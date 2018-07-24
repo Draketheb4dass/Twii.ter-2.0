@@ -2,7 +2,6 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -109,9 +107,9 @@ public class TwiitAdapter extends RecyclerView.Adapter<TwiitAdapter.ViewHolder>{
         public ViewHolder(View itemView) {
             super(itemView);
         //perform findViewById lookups
-            ivProfileImage =itemView.findViewById(R.id.ivProfileImage);
+            ivProfileImage =itemView.findViewById(R.id.ivProfileImageDetail);
             tvUserName = itemView.findViewById(R.id.tvUserName);
-            tvBody = itemView.findViewById(R.id.tvBody);
+            tvBody = itemView.findViewById(R.id.tvBodyDetail);
             tvTimestamp = itemView.findViewById(R.id.tvTimeStamp);
         }
     }

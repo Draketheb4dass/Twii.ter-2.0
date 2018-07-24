@@ -28,7 +28,6 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
     TwiitAdapter twiitAdapter;
     ArrayList<Twiit> twiits;
     RecyclerView rvTwiits;
-    private EndlessRecyclerViewScrollListener scrollListener;
     Toolbar myToolbar;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -54,7 +53,7 @@ public class TimelineActivity extends AppCompatActivity implements Toolbar.OnMen
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this);
         rvTwiits.setLayoutManager(linearLayoutManager);
         // Retain an instance so that you can call `resetState()` for fresh searches
-        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+        EndlessRecyclerViewScrollListener scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 // Triggered only when new data needs to be appended to the list
