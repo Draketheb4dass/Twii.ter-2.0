@@ -9,6 +9,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="twiit_hint">What\'s happening</string>
+    <string name="twiit_hint">Write a twiit</string>
+    <string name="username">\@jeph300</string>
 
 </resources>
