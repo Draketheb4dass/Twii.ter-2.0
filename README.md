@@ -54,7 +54,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://imgur.com/7qnRgbg.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [ffmpeg](https://www.ffmpeg.org/).
 
@@ -66,6 +66,7 @@ Describe any challenges encountered while building the app.
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
 - [Glide](https://github.com/bumptech/glide) - Image loading and caching library for Android by Google
+- [Parceler](https://github.com/johncarl81/parceler) - Make class parcelable
 
 ## License
 
