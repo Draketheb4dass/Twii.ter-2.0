@@ -28,7 +28,7 @@ The following **optional** features are implemented:
 * [x] User can tap a tweet to **open a detailed tweet view**
 * [ ] User can **select "reply" from detail view to respond to a tweet**
 
-The following **bonus** features are implemented:
+The following **bonus** features are implemented: 
 
 * [ ] User can see embedded image media within the tweet detail view
 * [ ] User can watch embedded video within the tweet
