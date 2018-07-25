@@ -30,7 +30,18 @@
         </activity>
         <activity
             android:name=".activities.TimelineActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="twitter.com" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -40,8 +51,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.DetailActivity"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".activities.DetailActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
