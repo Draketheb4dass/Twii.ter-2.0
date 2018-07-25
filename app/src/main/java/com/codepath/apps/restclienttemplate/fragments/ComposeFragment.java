@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.Editable;
+import android.text.Spanned;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +82,46 @@ public class ComposeFragment extends DialogFragment {
         btnCancel.setOnClickListener(v -> {
             //dismiss Dialog
             dismiss();
+        });
+
+        etTwiit = view.findViewById(R.id.etTwiit);
+        final int maxLineLength = 140;
+
+        etTwiit.addTextChangedListener(new TextWatcher() {
+            final Integer mark = 1;
+            String textBeforeEdit = null;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                textBeforeEdit = s.toString().substring(start, start + count);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                etTwiit.getText().setSpan(mark, start,
+                        start + count, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String str = s.toString();
+                int spanStart = s.getSpanStart(mark);
+                int spanEnd = s.getSpanEnd(mark);
+                int lastNL = str.lastIndexOf('\n', spanStart);
+                int nextNL;
+                while(lastNL < spanEnd) {
+                    nextNL = str.indexOf('\n', lastNL + 1);
+                    if(nextNL == -1)
+                        nextNL = str.length();
+                    if(nextNL - lastNL > maxLineLength + 1) {
+                        // reject the entire change
+                        s.replace(spanStart, spanEnd, textBeforeEdit);
+                        break;
+                    }
+                    lastNL = nextNL;
+                }
+                s.removeSpan(mark);
+            }
         });
 
     }
