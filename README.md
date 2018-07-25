@@ -54,9 +54,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img align = "right" src='https://imgur.com/7qnRgbg.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img align = "left" src='https://imgur.com/7qnRgbg.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 <img align = "right" src='https://imgur.com/DX167bf.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img align = "right" src='https://imgur.com/x0rwr3h.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://imgur.com/x0rwr3h.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 GIF created with [ffmpeg](https://www.ffmpeg.org/).
