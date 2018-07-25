@@ -166,7 +166,6 @@ public class TimelineActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         return true;
     }
 
@@ -174,8 +173,6 @@ public class TimelineActivity extends AppCompatActivity
     public void onStatusPosted(String status) {
         postStatus(status);
         populateTimeline();
-
-
     }
 
     public void postStatus(String status) {
