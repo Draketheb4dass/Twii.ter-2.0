@@ -1,17 +1,26 @@
 language: android
-jdk:
-  - oraclejdk8
+jdk: oraclejdk8
 sudo: false
+
 android:
   components:
-  - tools
-  - platform-tools
-  - build-tools-27.0.3
-  - android-27
-  licenses:
-  - android-sdk-license-.+
+    - platform-tools
+    - tools
+    - build-tools-27.0.3
+    - android-22
+    - android-24
+    - sys-img-armeabi-v7a-android-22
+    - extra-android-m2repository
+
+before_script:
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
 before_install:
-  - yes | sdkmanager "platforms;android-27"
-script:
-- "./gradlew build check --daemon"
-after_failure: "cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml"
+- yes | sdkmanager "platforms;android-27"
+
+
+script: ./gradlew connectedAndroidTest
