@@ -11,5 +11,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="twiit_hint">Write a twiit</string>
     <string name="username">\@jeph300</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="text_body">TextBody</string>
 
 </resources>

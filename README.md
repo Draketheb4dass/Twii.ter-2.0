@@ -9,10 +9,10 @@ Time spent: **X** hours spent in total
 The following **required** functionality is completed:
 
 * [x] The app includes **all required user stories** from Week 3 Twitter Client
-* [ ] User can **switch between Timeline and Mention views using tabs**
-  * [ ] User can view their home timeline tweets.
-  * [ ] User can view the recent mentions of their username.
-* [ ] User can navigate to **view their own profile**
+* [x] User can **switch between Timeline and Mention views using tabs**
+  * [x] User can view their home timeline tweets.
+  * [x] User can view the recent mentions of their username.
+* [x] User can navigate to **view their own profile**
   * [ ] User can see picture, tagline, # of followers, # of following, and tweets on their profile.
 * [ ] User can **click on the profile image** in any tweet to see **another user's** profile.
  * [ ] User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
@@ -26,7 +26,7 @@ The following **optional** features are implemented:
 * [ ] When a network request is sent, user sees an [indeterminate progress indicator](http://guides.codepath.com/android/Handling-ProgressBars#progress-within-actionbar)
 * [ ] User can **"reply" to any tweet on their home timeline**
   * [ ] The user that wrote the original tweet is automatically "@" replied in compose
-* [ ] User can click on a tweet to be **taken to a "detail view"** of that tweet
+* [] User can click on a tweet to be **taken to a "detail view"** of that tweet
  * [ ] User can take favorite (and unfavorite) or retweet actions on a tweet
 * [ ] User can **search for tweets matching a particular query** and see results
 * [ ] Usernames and hashtags are styled and clickable within tweets [using clickable spans](http://guides.codepath.com/android/Working-with-the-TextView#creating-clickable-styled-spans)

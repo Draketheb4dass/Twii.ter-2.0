@@ -34,8 +34,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
-                    android:host="twitter.com" />
+                    android:host="twitter.com"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity
@@ -48,8 +48,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
-                    android:host="twitter.com" />
+                    android:host="twitter.com"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -58,8 +58,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
-                    android:host="www.twitter.com" />
+                    android:host="www.twitter.com"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -68,8 +68,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
-                    android:host="twitter.com" />
+                    android:host="twitter.com"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity
@@ -84,6 +84,10 @@
         <activity
             android:name=".activities.DetailActivity"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ProfileActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

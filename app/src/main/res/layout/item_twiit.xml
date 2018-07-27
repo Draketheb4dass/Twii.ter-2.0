@@ -31,9 +31,9 @@
         android:layout_height="wrap_content"
         android:autoLink="web"
         android:layout_below="@+id/tvUserName"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivProfileImageDetail"
-        android:text="TextView" />
+        android:text="@string/text_body" />
 
     <TextView
         android:id="@+id/tvTimeStamp"
@@ -41,7 +41,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:text="TextView" />
+        android:text="@string/timestamp" />
+
+
+    <TextView
+        android:id="@+id/tvScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tvUserName"
+        android:layout_toStartOf="@+id/tvTimeStamp"
+        android:layout_marginEnd="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:text="username" />
 
 
 </RelativeLayout>

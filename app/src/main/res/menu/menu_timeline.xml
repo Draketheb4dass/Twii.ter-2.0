@@ -4,11 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_compose"
-        app:showAsAction="always|withText"
-        android:icon="@drawable/ic_compose"
-        android:orderInCategory="100"
-        android:title="write"
-        tools:ignore="MenuTitle" />
+        android:id="@+id/myProfile"
+        android:icon="@drawable/ic_person_white_24dp"
+        android:title="Item"
+        app:showAsAction="ifRoom"
+        android:onClick="onProfileView"/>
 
 </menu>
