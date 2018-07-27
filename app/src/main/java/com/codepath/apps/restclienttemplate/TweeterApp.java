@@ -11,11 +11,11 @@ import com.facebook.stetho.Stetho;
  * including the image cache in memory and on disk. This also adds a singleton
  * for accessing the relevant rest client.
  *
- *     TwiiterClient client = TwiiterApp.getRestClient(Context context);
+ *     TweeterClient client = TweeterApp.getRestClient(Context context);
  *     // use client to send requests to API
  *
  */
-public class TwiiterApp extends Application {
+public class TweeterApp extends Application {
 
     MyDatabase myDatabase;
 
@@ -31,8 +31,8 @@ public class TwiiterApp extends Application {
         Stetho.initializeWithDefaults(this);
     }
 
-    public static TwiiterClient getRestClient(Context context) {
-        return (TwiiterClient) TwiiterClient.getInstance(TwiiterClient.class, context);
+    public static TweeterClient getRestClient(Context context) {
+        return (TweeterClient) TweeterClient.getInstance(TweeterClient.class, context);
     }
 
     public MyDatabase getMyDatabase() {

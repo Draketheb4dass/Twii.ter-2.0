@@ -16,19 +16,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.codepath.apps.restclienttemplate.R;
-import com.codepath.apps.restclienttemplate.TwiiterApp;
-import com.codepath.apps.restclienttemplate.TwiiterClient;
-import com.codepath.apps.restclienttemplate.activities.TimelineActivity;
-import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.codepath.apps.restclienttemplate.TweeterClient;
+import com.codepath.apps.restclienttemplate.TweeterApp;
 
 import java.util.Objects;
-
-import cz.msebera.android.httpclient.Header;
 
 //todo show image profile and username
 public class ComposeFragment extends DialogFragment {
     static EditText etTwiit;
-    TwiiterClient client;
+    TweeterClient client;
     ImageView profileImage;
 
     public ComposeFragment() {} //Empty Constructor is required for DialogFragment
@@ -56,7 +52,7 @@ public class ComposeFragment extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        client = TwiiterApp.getRestClient(getContext());
+        client = TweeterApp.getRestClient(getContext());
 
        // profileImage = view.findViewById(R.id.ivProfileImage);
        // Glide.with(getContext())

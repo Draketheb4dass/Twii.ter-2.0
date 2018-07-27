@@ -7,13 +7,13 @@ import android.view.Menu;
 import android.view.View;
 
 import com.codepath.apps.restclienttemplate.R;
-import com.codepath.apps.restclienttemplate.TwiiterApp;
-import com.codepath.apps.restclienttemplate.TwiiterClient;
+import com.codepath.apps.restclienttemplate.TweeterApp;
+import com.codepath.apps.restclienttemplate.TweeterClient;
 import com.codepath.apps.restclienttemplate.models.SampleModel;
 import com.codepath.apps.restclienttemplate.models.SampleModelDao;
 import com.codepath.oauth.OAuthLoginActionBarActivity;
 
-public class LoginActivity extends OAuthLoginActionBarActivity<TwiiterClient> {
+public class LoginActivity extends OAuthLoginActionBarActivity<TweeterClient> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwiiterClient> {
 		final SampleModel sampleModel = new SampleModel();
 		sampleModel.setName("CodePath");
 
-		final SampleModelDao sampleModelDao = ((TwiiterApp) getApplicationContext()).getMyDatabase().sampleModelDao();
+		final SampleModelDao sampleModelDao = ((TweeterApp) getApplicationContext()).getMyDatabase().sampleModelDao();
 
 		AsyncTask<SampleModel, Void, Void> task = new AsyncTask<SampleModel, Void, Void>() {
 			@Override

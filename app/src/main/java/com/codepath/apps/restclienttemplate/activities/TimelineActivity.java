@@ -8,38 +8,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TableLayout;
 
-import com.codepath.apps.restclienttemplate.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.restclienttemplate.ProfileActivity;
 import com.codepath.apps.restclienttemplate.R;
-import com.codepath.apps.restclienttemplate.adapters.TwiitAdapter;
-import com.codepath.apps.restclienttemplate.TwiiterApp;
-import com.codepath.apps.restclienttemplate.TwiiterClient;
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
-import com.codepath.apps.restclienttemplate.fragments.TweetsListFragment;
 import com.codepath.apps.restclienttemplate.fragments.TweetsPagerAdapter;
-import com.codepath.apps.restclienttemplate.models.Twiit;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-import cz.msebera.android.httpclient.Header;
-
-import static android.support.v7.widget.RecyclerView.HORIZONTAL;
 
 public class TimelineActivity extends AppCompatActivity
         implements Toolbar.OnMenuItemClickListener

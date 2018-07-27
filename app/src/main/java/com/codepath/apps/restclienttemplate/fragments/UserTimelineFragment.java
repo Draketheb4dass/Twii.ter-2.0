@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.codepath.apps.restclienttemplate.TwiiterApp;
-import com.codepath.apps.restclienttemplate.TwiiterClient;
+import com.codepath.apps.restclienttemplate.TweeterApp;
+import com.codepath.apps.restclienttemplate.TweeterClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -17,7 +17,7 @@ import cz.msebera.android.httpclient.Header;
  * Created by drake on 7/26/18
  */
 public class UserTimelineFragment extends TweetsListFragment {
-    TwiiterClient client;
+    TweeterClient client;
     public static UserTimelineFragment newInstance(String screenName){
         UserTimelineFragment userTimelineFragment =new UserTimelineFragment();
         Bundle args = new Bundle();
@@ -29,7 +29,7 @@ public class UserTimelineFragment extends TweetsListFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        client = TwiiterApp.getRestClient(getContext());
+        client = TweeterApp.getRestClient(getContext());
         populateTimeline();
 
     }
@@ -40,12 +40,12 @@ public class UserTimelineFragment extends TweetsListFragment {
         client.getUserTimeline(screenName, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("TwiiterClient", response.toString());
+                Log.d("TweeterClient", response.toString());
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                //Log.d("TwiiterClient", response.toString());
+                //Log.d("TweeterClient", response.toString());
                 //iterate through the JSON array
                 // for each entry, deserialize JSON object
                 addItems(response);
@@ -58,7 +58,7 @@ public class UserTimelineFragment extends TweetsListFragment {
                                   Header[] headers,
                                   String responseString,
                                   Throwable throwable) {
-                Log.d("TwiiterClient", responseString);
+                Log.d("TweeterClient", responseString);
                 throwable.printStackTrace();
             }
 
@@ -67,7 +67,7 @@ public class UserTimelineFragment extends TweetsListFragment {
                                   Header[] headers,
                                   Throwable throwable,
                                   JSONObject errorResponse) {
-                Log.d("TwiiterClient", errorResponse.toString());
+                Log.d("TweeterClient", errorResponse.toString());
             }
 
             @Override
@@ -75,7 +75,7 @@ public class UserTimelineFragment extends TweetsListFragment {
                                   Header[] headers,
                                   Throwable throwable,
                                   JSONArray errorResponse) {
-                Log.d("TwiiterClient", errorResponse.toString());
+                Log.d("TweeterClient", errorResponse.toString());
             }
         });
 

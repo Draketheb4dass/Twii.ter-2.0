@@ -1,6 +1,5 @@
 package com.codepath.apps.restclienttemplate;
 
-import android.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import com.codepath.apps.restclienttemplate.fragments.UserTimelineFragment;
 import com.codepath.apps.restclienttemplate.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,7 +22,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ProfileActivity extends AppCompatActivity
         implements Toolbar.OnMenuItemClickListener {
-    TwiiterClient client;
+    TweeterClient client;
     Toolbar myToolbar;
 
     @Override
@@ -50,7 +48,7 @@ public class ProfileActivity extends AppCompatActivity
         //commit
         ft.commit();
 
-        client = TwiiterApp.getRestClient(getBaseContext());
+        client = TweeterApp.getRestClient(getBaseContext());
         client.getUserInfo(new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

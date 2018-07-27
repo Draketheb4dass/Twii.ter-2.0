@@ -15,7 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.R;
-import com.codepath.apps.restclienttemplate.models.Twiit;
+import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
 
@@ -33,26 +33,26 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
         setContentView(R.layout.activity_detail);
 
         //Get Parcel
-        Twiit twiit = Parcels
+        Tweet tweet = Parcels
                 .unwrap(getIntent()
-                        .getParcelableExtra("twiit"));
+                        .getParcelableExtra("tweet"));
 
         //Bind Views
         ivProfileImage = findViewById(R.id.ivProfileImageDetail);
         Glide.with(getBaseContext())
-                .load(twiit.user.profileImageUrl)
+                .load(tweet.user.profileImageUrl)
                 .apply(new RequestOptions().transforms(new CenterCrop(),
                 new RoundedCorners(10)))
                 .into(ivProfileImage);
 
         tvUserName = findViewById(R.id.tvUsernameDetail);
-        tvUserName.setText("@" + twiit.user.name);
+        tvUserName.setText("@" + tweet.user.name);
 
 
         tvBody = findViewById(R.id.tvBodyDetail);
-        tvBody.setText(twiit.body);
+        tvBody.setText(tweet.body);
         tvName = findViewById(R.id.tvNameDetail);
-        tvName.setText(twiit.user.name);
+        tvName.setText(tweet.user.name);
         ivDetailImage = findViewById(R.id.ivDetailImage);
 
         ibReply = findViewById(R.id.ib_Reply);

@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.codepath.apps.restclienttemplate.R;
-import com.codepath.apps.restclienttemplate.adapters.TwiitAdapter;
-import com.codepath.apps.restclienttemplate.models.Twiit;
+import com.codepath.apps.restclienttemplate.adapters.TweetAdapter;
+import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,36 +24,36 @@ import java.util.ArrayList;
  * Created by drake on 7/26/18
  */
 public class TweetsListFragment extends Fragment {
-    TwiitAdapter twiitAdapter;
-    ArrayList<Twiit> twiits;
-    RecyclerView rvTwiits;
+    TweetAdapter tweetAdapter;
+    ArrayList<Tweet> tweets;
+    RecyclerView rvTweets;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //inflate layout
-        View v = inflater.inflate(R.layout.fragments_twiits_list, container, false);
+        View v = inflater.inflate(R.layout.fragments_tweets_list, container, false);
         // find the recyclerView
-        rvTwiits = v.findViewById(R.id.rvTweet);
+        rvTweets = v.findViewById(R.id.rvTweet);
         //init the arrayList (data source)
-        twiits = new ArrayList<>();
+        tweets = new ArrayList<>();
         //construct the adapter form data source
-        twiitAdapter = new TwiitAdapter((twiits));
+        tweetAdapter = new TweetAdapter((tweets));
         //RecyclerView setup (layout manager, use adapter)
-        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
-        rvTwiits.setLayoutManager(linearLayoutManager);
-        rvTwiits.setAdapter(twiitAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvTweets.setLayoutManager(linearLayoutManager);
+        rvTweets.setAdapter(tweetAdapter);
         return v;
     }
 
     public void addItems(JSONArray response){
         for (int i = 0; i < response.length(); i++ ) {
-            //convert each object to a Twiit model
+            //convert each object to a Tweet model
             //add that twiit model to our data source
             //notify the adapter that we've added an item
             try {
-                Twiit twiit = Twiit.fromJSON(response.getJSONObject(i));
-                twiits.add(twiit);
-                twiitAdapter.notifyItemInserted(twiits.size() - 1);
+                Tweet tweet = Tweet.fromJSON(response.getJSONObject(i));
+                tweets.add(tweet);
+                tweetAdapter.notifyItemInserted(tweets.size() - 1);
             } catch (JSONException e){
                 e.printStackTrace();
             }

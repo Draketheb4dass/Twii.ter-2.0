@@ -17,7 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.activities.DetailActivity;
-import com.codepath.apps.restclienttemplate.models.Twiit;
+import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
 
@@ -29,12 +29,12 @@ import java.util.Locale;
 /**
  * Created by drake on 7/19/18
  */
-public class TwiitAdapter extends RecyclerView.Adapter<TwiitAdapter.ViewHolder>{
-    private List<Twiit> mTwiits;
+public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
+    private List<Tweet> mTweets;
     Context context;
     //passing the tweets array to the constructor
-    public TwiitAdapter(List<Twiit> twiits) {
-        mTwiits = twiits;
+    public TweetAdapter(List<Tweet> tweets) {
+        mTweets = tweets;
     }
 
     //for each row, inflate the layout and cache ref into ViewHolder
@@ -44,7 +44,7 @@ public class TwiitAdapter extends RecyclerView.Adapter<TwiitAdapter.ViewHolder>{
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View twiitView = inflater.inflate(R.layout.item_twiit,parent,false);
+        View twiitView = inflater.inflate(R.layout.item_tweet,parent,false);
         ViewHolder viewHolder = new ViewHolder(twiitView);
         return viewHolder;
     }
@@ -53,25 +53,22 @@ public class TwiitAdapter extends RecyclerView.Adapter<TwiitAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //get the data according to position
-        Twiit twiit = mTwiits.get(position);
+        Tweet tweet = mTweets.get(position);
         //populate the views according to position
-        holder.tvUserName.setText(twiit.user.name);
-        holder.tvBody.setText(twiit.body);
-        holder.tvTimestamp.setText(getRelativeTimeAgo(twiit.createdAt));
-        holder.tvScreenName.setText("@" + twiit.user.screenName);
+        holder.tvUserName.setText(tweet.user.name);
+        holder.tvBody.setText(tweet.body);
+        holder.tvTimestamp.setText(getRelativeTimeAgo(tweet.createdAt));
+        holder.tvScreenName.setText("@" + tweet.user.screenName);
         Glide.with(context)
-                .load(twiit.user.profileImageUrl)
+                .load(tweet.user.profileImageUrl)
                 .apply(new RequestOptions().transforms(new CenterCrop(),
                         new RoundedCorners(10)))
                 .into(holder.ivProfileImage);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, DetailActivity.class);
-                i.putExtra("twiit", Parcels.wrap(twiit));
-                context.startActivity(i);
-            }
+        holder.itemView.setOnClickListener(view -> {
+            Intent i = new Intent(context, DetailActivity.class);
+            i.putExtra("tweet", Parcels.wrap(tweet));
+            context.startActivity(i);
         });
     }
 
@@ -97,7 +94,7 @@ public class TwiitAdapter extends RecyclerView.Adapter<TwiitAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return mTwiits.size();
+        return mTweets.size();
     }
 
     //create Viewholder class

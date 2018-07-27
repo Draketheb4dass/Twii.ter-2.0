@@ -21,7 +21,7 @@ import com.loopj.android.http.RequestParams;
  * NOTE: You may want to rename this object based on the service i.e TwitterClient or FlickrClient
  * 
  */
-public class TwiiterClient extends OAuthBaseClient {
+public class TweeterClient extends OAuthBaseClient {
 	public static final BaseApi REST_API_INSTANCE = TwitterApi.instance();
 	public static final String REST_URL = "https://api.twitter.com/1.1";
 	public static final String REST_CONSUMER_KEY = "b6yrgSyZUZbcERN5rexkUxK8w";
@@ -36,7 +36,7 @@ public class TwiiterClient extends OAuthBaseClient {
 	public static final String REST_CALLBACK_URL_TEMPLATE =
             "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end";
 
-	public TwiiterClient(Context context) {
+	public TweeterClient(Context context) {
 		super(context, REST_API_INSTANCE,
 				REST_URL,
 				REST_CONSUMER_KEY,
