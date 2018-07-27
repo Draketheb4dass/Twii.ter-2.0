@@ -10,4 +10,12 @@
         app:showAsAction="ifRoom"
         android:onClick="onProfileView"/>
 
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:title="@string/action_search"
+        app:showAsAction="never"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+
 </menu>

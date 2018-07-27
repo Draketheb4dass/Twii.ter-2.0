@@ -13,5 +13,6 @@
     <string name="username">\@jeph300</string>
     <string name="timestamp">Timestamp</string>
     <string name="text_body">TextBody</string>
+    <string name="action_search">search</string>
 
 </resources>

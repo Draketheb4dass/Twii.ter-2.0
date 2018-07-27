@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ public class TimelineActivity extends AppCompatActivity
          {
     Toolbar myToolbar;
     SwipeRefreshLayout mSwipeRefreshLayout;
+    SearchView searchView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,13 +90,30 @@ public class TimelineActivity extends AppCompatActivity
         //populateTimeline();
     }
 
+             @Override
+             public boolean onCreateOptionsMenu(Menu menu) {
+                 // Inflate the menu; this adds items to the action bar if it is present.
+                 getMenuInflater().inflate(R.menu.menu_timeline, menu);
+                 MenuItem searchItem = menu.findItem(R.id.action_search);
+                 searchView = (SearchView) searchItem.getActionView();
+                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                     @Override
+                     public boolean onQueryTextSubmit(String query) {
+                         //onTweetSearch(null);
+                         searchView.clearFocus();
+                         return true;
+                     }
+                     @Override
+                     public boolean onQueryTextChange(String newText) {
+                         return false;
+                     }
+                 });
+                 return super.onCreateOptionsMenu(menu);
+             }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_timeline, menu);
-        return true;
-    }
+
+
 
     public void onProfileView(MenuItem item) {
         //launch the profile view
