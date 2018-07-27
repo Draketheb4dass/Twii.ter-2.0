@@ -77,7 +77,7 @@ public class TweeterClient extends OAuthBaseClient {
         client.get(apiUrl, params, handler);
     }
 
-    public void getUserInfo(AsyncHttpResponseHandler handler) {
+    public void getMyInfo(AsyncHttpResponseHandler handler) {
         String apiUrl =
                 getApiUrl("account/verify_credentials.json");
         // Can specify query string params directly or through RequestParams.
@@ -90,6 +90,14 @@ public class TweeterClient extends OAuthBaseClient {
         RequestParams params = new RequestParams();
         params.put("status", status);
         client.post(apiUrl, params, handler);
+    }
+
+    public void getUserInfo(AsyncHttpResponseHandler handler, String screenName) {
+	    String apiUrl =
+                getApiUrl("users/show.json");
+	    RequestParams params = new RequestParams();
+	    params.put("screen_name", screenName);
+	    client.get(apiUrl, params, handler);
     }
 
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint

@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity
         ft.commit();
 
         client = TweeterApp.getRestClient(getBaseContext());
-        client.getUserInfo(new JsonHttpResponseHandler(){
+        client.getMyInfo(new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //deserialize user object

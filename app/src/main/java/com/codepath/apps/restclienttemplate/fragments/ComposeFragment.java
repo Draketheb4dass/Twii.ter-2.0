@@ -122,10 +122,6 @@ public class ComposeFragment extends DialogFragment {
 
     }
 
-    public void onDismiss(){
-        dismiss();
-    }
-
 
     @Override
     public void onResume() {
