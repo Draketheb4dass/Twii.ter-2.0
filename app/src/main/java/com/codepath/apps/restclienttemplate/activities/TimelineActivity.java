@@ -59,7 +59,7 @@ public class TimelineActivity extends AppCompatActivity
        //     }
        // };
        // // Adds the scroll listener to RecyclerView
-       // rvTwiits.addOnScrollListener(scrollListener);
+       // rvTweets.addOnScrollListener(scrollListener);
        // //set the adapter
 
 
