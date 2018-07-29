@@ -17,6 +17,7 @@ public class Tweet {
     public long uid; //DB id of the tweet
     public User user;
     public String createdAt;
+    public long tweetId;
     public ArrayList<String> extendedEntities;
 
     public Tweet() {} //Empty public constructor for parceler
@@ -30,6 +31,7 @@ public class Tweet {
         tweet.uid = jsonObject.getLong("id");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
+        tweet.tweetId = jsonObject.getLong("id_str");
         //tweet.extendedEntities = ExtendedEntities.fromJSON
         return tweet;
 
@@ -40,6 +42,7 @@ public class Tweet {
         tweet.body = jsonArray.getJSONObject(index).getString("text");
         tweet.createdAt = jsonArray.getJSONObject(index).getString("created_at");
         tweet.user = User.fromJSON(jsonArray.getJSONObject(index).getJSONObject("user"));
+        tweet.tweetId = jsonArray.getJSONObject(index).getLong("id_str");
         return tweet;
     }
 }
