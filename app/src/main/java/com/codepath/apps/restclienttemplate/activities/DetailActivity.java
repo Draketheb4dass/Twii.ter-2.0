@@ -17,7 +17,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.ProfileActivity;
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.TweeterClient;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.parceler.Parcels;
 
@@ -28,6 +30,9 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
     TextView tvName;
     ImageView ivDetailImage;
     ImageButton ibReply;
+    TweeterClient client;
+    long tweeId;
+    Tweet tweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,7 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
         setContentView(R.layout.activity_detail);
 
         //Get Parcel
-        Tweet tweet = Parcels
+        tweet = Parcels
                 .unwrap(getIntent()
                         .getParcelableExtra("tweet"));
 
@@ -71,9 +76,18 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
             @Override
             public void onClick(View v) {
                 Toast.makeText(DetailActivity.this, "reply", Toast.LENGTH_SHORT).show();
+                tweeId = tweet.tweetId;
+                onPostRetweet(tweeId);
+
             }
         });
 
+
+    }
+
+    public void onPostRetweet(long tweetId) {
+        client = new TweeterClient(this);
+        client.postRetweet(null, tweetId);
 
     }
 

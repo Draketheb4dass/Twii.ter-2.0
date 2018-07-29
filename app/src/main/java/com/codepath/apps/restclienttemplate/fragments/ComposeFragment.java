@@ -19,8 +19,12 @@ import android.widget.ImageView;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TweeterClient;
 import com.codepath.apps.restclienttemplate.TweeterApp;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
 import java.util.Objects;
+
+import cz.msebera.android.httpclient.Header;
 
 //todo show image profile and username
 public class ComposeFragment extends DialogFragment {
@@ -69,9 +73,10 @@ public class ComposeFragment extends DialogFragment {
                 v -> {
                     etTwiit = view.findViewById(R.id.etTwiit);
                     String status = etTwiit.getText().toString();
-                    ComposeListener listener = (ComposeListener) getActivity();
-                    assert listener != null;
-                    listener.onStatusPosted(status);
+                    //ComposeListener listener = (ComposeListener) getActivity();
+                    //assert listener != null;
+                    onStatusPosted(status);
+
                     dismiss();
                 }
         );
@@ -122,6 +127,24 @@ public class ComposeFragment extends DialogFragment {
         });
 
     }
+
+    private void onStatusPosted(String status) {
+        client.postStatus(new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody) {
+            }
+
+            @Override
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody,
+                                  Throwable error) {
+            }
+        }, status);
+        }
+
 
 
     @Override

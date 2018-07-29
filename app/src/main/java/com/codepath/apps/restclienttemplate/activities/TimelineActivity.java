@@ -17,13 +17,14 @@ import com.codepath.apps.restclienttemplate.ProfileActivity;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.fragments.TweetsPagerAdapter;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.util.Objects;
 
 public class TimelineActivity extends AppCompatActivity
         implements Toolbar.OnMenuItemClickListener
         //ComposeFragment.ComposeListener
-         {
+{
     Toolbar myToolbar;
     SwipeRefreshLayout mSwipeRefreshLayout;
     SearchView searchView = null;
@@ -52,19 +53,19 @@ public class TimelineActivity extends AppCompatActivity
 
 
 
-       // // Retain an instance so that you can call `resetState()` for fresh searches
-       // EndlessRecyclerViewScrollListener scrollListener =
-       //         new EndlessRecyclerViewScrollListener(linearLayoutManager) {
-       //     @Override
-       //     public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-       //         // Triggered only when new data needs to be appended to the list
-       //         // Add whatever code is needed to append new items to the bottom of the list
-       //         loadNextDataFromApi(page);
-       //     }
-       // };
-       // // Adds the scroll listener to RecyclerView
-       // rvTweets.addOnScrollListener(scrollListener);
-       // //set the adapter
+        // // Retain an instance so that you can call `resetState()` for fresh searches
+        // EndlessRecyclerViewScrollListener scrollListener =
+        //         new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+        //     @Override
+        //     public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+        //         // Triggered only when new data needs to be appended to the list
+        //         // Add whatever code is needed to append new items to the bottom of the list
+        //         loadNextDataFromApi(page);
+        //     }
+        // };
+        // // Adds the scroll listener to RecyclerView
+        // rvTweets.addOnScrollListener(scrollListener);
+        // //set the adapter
 
 
         //Floating Action Button implementation
@@ -94,61 +95,32 @@ public class TimelineActivity extends AppCompatActivity
         //populateTimeline();
     }
 
-             @Override
-             public boolean onCreateOptionsMenu(Menu menu) {
-                 // Inflate the menu; this adds items to the action bar if it is present.
-                 getMenuInflater().inflate(R.menu.menu_timeline, menu);
-                 MenuItem searchItem = menu.findItem(R.id.action_search);
-                 searchView = (SearchView) searchItem.getActionView();
-                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                     @Override
-                     public boolean onQueryTextSubmit(String query) {
-                         Intent i = new Intent(getBaseContext(), SearchActivity.class);
-                         i.putExtra("query", query);
-                         startActivity(i);
-                         searchView.clearFocus();
-                         return true;
-                     }
-                     @Override
-                     public boolean onQueryTextChange(String newText) {
-                         return false;
-                     }
-                 });
-                 return super.onCreateOptionsMenu(menu);
-             }
-
-
-
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_timeline, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent i = new Intent(getBaseContext(), SearchActivity.class);
+                i.putExtra("query", query);
+                startActivity(i);
+                searchView.clearFocus();
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
 
     public void onProfileView(MenuItem item) {
         //launch the profile view
         Intent i = new Intent(this, ProfileActivity.class);
         startActivity(i);
     }
-
-             // @Override
-  // public void onStatusPosted(String status) {
-  //     postStatus(status);
-  //     populateTimeline();
-  // }
-
-  // public void postStatus(String status) {
-  //     client.postStatus(new AsyncHttpResponseHandler() {
-  //         @Override
-  //         public void onSuccess(int statusCode,
-  //                               Header[] headers,
-  //                               byte[] responseBody) {
-  //         }
-
-  //         @Override
-  //         public void onFailure(int statusCode,
-  //                               Header[] headers,
-  //                               byte[] responseBody,
-  //                               Throwable error) {
-  //         }
-  //     }, status);
-  //     populateTimeline();
-  // }
-
 }
