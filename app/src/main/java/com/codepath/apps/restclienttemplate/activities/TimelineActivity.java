@@ -18,6 +18,8 @@ import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.fragments.TweetsPagerAdapter;
 
+import java.util.Objects;
+
 public class TimelineActivity extends AppCompatActivity
         implements Toolbar.OnMenuItemClickListener
         //ComposeFragment.ComposeListener
@@ -36,6 +38,8 @@ public class TimelineActivity extends AppCompatActivity
         myToolbar.inflateMenu(R.menu.menu_timeline);
         setSupportActionBar(myToolbar);
         myToolbar.setOnMenuItemClickListener(this);
+        myToolbar.setLogo(R.drawable.ic_twitterlogo);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //get the view Pager
         ViewPager vpPager = findViewById(R.id.viewpager);

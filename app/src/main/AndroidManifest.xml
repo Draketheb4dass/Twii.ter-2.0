@@ -40,7 +40,8 @@
         </activity>
         <activity
             android:name=".activities.TimelineActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:icon="@drawable/background_splash" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -87,9 +88,6 @@
         <activity
             android:name=".ProfileActivity"
             android:theme="@style/AppTheme">
-
-        </activity>
-        <activity android:name=".activities.UserProfileActivity">
 
         </activity>
 
