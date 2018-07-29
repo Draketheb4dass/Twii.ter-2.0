@@ -3,7 +3,7 @@
 
     <item
         android:drawable="@color/colorPrimary"/>
-    <item android:drawable="@mipmap/ic_splash"
+    <item android:drawable="@drawable/ic_twitterlogo"
         android:state_activated="true"
         android:state_selected="true"
         android:gravity="center" />
