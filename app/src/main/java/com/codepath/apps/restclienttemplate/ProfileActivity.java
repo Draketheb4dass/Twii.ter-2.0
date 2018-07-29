@@ -49,8 +49,6 @@ public class ProfileActivity extends AppCompatActivity {
                 //deserialize user object
                 try {
                     User user = User.fromJSON(response);
-                    //set the title of the ActionBar based on the user info
-                    Objects.requireNonNull(getSupportActionBar()).setTitle(user.screenName);
                     //populate the user headline
                     populateUserHeadline(user);
                 } catch (JSONException e) {
@@ -59,7 +57,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         };
-        if (screenName != null) { // user clicked on a tweet, not the profile menu option
+        // If user click on another profile or his own profile
+        if (screenName != null) {
             client.getUserInfo(screenName, handler);
         } else {
             client.getMyInfo(handler);
