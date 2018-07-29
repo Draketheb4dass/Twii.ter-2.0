@@ -20,21 +20,15 @@ import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ProfileActivity extends AppCompatActivity
-        implements Toolbar.OnMenuItemClickListener {
+public class ProfileActivity extends AppCompatActivity {
     TweeterClient client;
-    Toolbar myToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        //Set custom AppBar
-        myToolbar = findViewById(R.id.profile_toolbar);
-        myToolbar.inflateMenu(R.menu.menu_profile);
-        setSupportActionBar(myToolbar);
-        myToolbar.setOnMenuItemClickListener(this);
         String screenName = getIntent().getStringExtra("screen_name");
 
         //create the user fragment
@@ -74,7 +68,8 @@ public class ProfileActivity extends AppCompatActivity
 
     }
 
-    public void populateUserHeadline(User user){
+    public void populateUserHeadline(User user) {
+        //todo add banner
         TextView tvName = findViewById(R.id.tvNameDetail);
         TextView tvTagline = findViewById(R.id.tvTagline);
         TextView tvFollowers = findViewById(R.id.tvFollowers);
@@ -91,11 +86,5 @@ public class ProfileActivity extends AppCompatActivity
                 .into(ivProfileImage);
 
 
-
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        return false;
     }
 }
