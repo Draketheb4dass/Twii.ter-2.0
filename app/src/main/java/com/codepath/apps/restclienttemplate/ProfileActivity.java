@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity
         ft.commit();
 
         client = TweeterApp.getRestClient(getBaseContext());
-        client.getMyInfo(new JsonHttpResponseHandler(){
+        JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //deserialize user object
@@ -57,14 +57,20 @@ public class ProfileActivity extends AppCompatActivity
                     User user = User.fromJSON(response);
                     //set the title of the ActionBar based on the user info
                     Objects.requireNonNull(getSupportActionBar()).setTitle(user.screenName);
-                //populate the user headline
+                    //populate the user headline
                     populateUserHeadline(user);
-                }catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
 
-        });
+        };
+        if (screenName != null) { // user clicked on a tweet, not the profile menu option
+            client.getUserInfo(screenName, handler);
+        } else {
+            client.getMyInfo(handler);
+
+        }
 
     }
 

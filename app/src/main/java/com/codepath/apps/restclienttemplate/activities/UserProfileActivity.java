@@ -35,9 +35,9 @@ public class UserProfileActivity extends AppCompatActivity
 
         //Set custom AppBar
         myToolbar = findViewById(R.id.profile_toolbar);
-        myToolbar.inflateMenu(R.menu.menu_profile);
+        //myToolbar.inflateMenu(R.menu.menu_profile);
         setSupportActionBar(myToolbar);
-        myToolbar.setOnMenuItemClickListener(this);
+       // myToolbar.setOnMenuItemClickListener(this);
         String screenName = getIntent().getStringExtra("screen_name");
 
         //create the user fragment
@@ -52,7 +52,7 @@ public class UserProfileActivity extends AppCompatActivity
         ft.commit();
 
         client = TweeterApp.getRestClient(getBaseContext());
-        client.getUserInfo(new JsonHttpResponseHandler() {
+        JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //deserialize user object
@@ -67,9 +67,15 @@ public class UserProfileActivity extends AppCompatActivity
                 }
             }
 
-        }, screenName);
+        };
+        if (screenName != null) { // user clicked on a tweet, not the profile menu option
+            client.getUserInfo(screenName, handler);
+        } else {
+            client.getMyInfo(handler);
 
+        }
     }
+
 
     public void populateUserHeadline(User user) {
         TextView tvName = findViewById(R.id.tvNameDetail);

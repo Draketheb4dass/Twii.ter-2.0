@@ -92,7 +92,7 @@ public class TweeterClient extends OAuthBaseClient {
         client.post(apiUrl, params, handler);
     }
 
-    public void getUserInfo(AsyncHttpResponseHandler handler, String screenName) {
+    public void getUserInfo(String screenName, AsyncHttpResponseHandler handler) {
 	    String apiUrl =
                 getApiUrl("users/show.json");
 	    RequestParams params = new RequestParams();

@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.codepath.apps.restclienttemplate.ProfileActivity;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
@@ -44,6 +46,15 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
                 .apply(new RequestOptions().transforms(new CenterCrop(),
                 new RoundedCorners(10)))
                 .into(ivProfileImage);
+
+        ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), ProfileActivity.class);
+                i.putExtra("screen_name", tweet.user.screenName);
+                startActivity(i);
+            }
+        });
 
         tvUserName = findViewById(R.id.tvUsernameDetail);
         tvUserName.setText("@" + tweet.user.name);
