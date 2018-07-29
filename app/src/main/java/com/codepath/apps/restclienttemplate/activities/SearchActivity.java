@@ -102,15 +102,25 @@ public class SearchActivity extends AppCompatActivity
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //Log.d("TwiiterClientObject", response.toString());
+                //try {
+                //    JSONObject jsonObject = response.getJSONObject("statuses");
+//
+                //            Tweet twiit = Tweet.fromJSON(jsonObject);
+                //            tweets.add(twiit);
+                //            tweetAdapter.notifyItemInserted(tweets.size() - 1);
+                //        } catch (JSONException e) {
+                //            e.printStackTrace();
+                //        }
                 try {
-                    JSONObject jsonObject = response.getJSONObject("statuses");
+                    JSONArray jsonArray = response.getJSONArray("statuses");
+                    Tweet tweet = Tweet.fromJSONArray(jsonArray);
+                    tweets.add(tweet);
+                    tweetAdapter.notifyItemInserted(tweets.size() - 1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                            Tweet twiit = Tweet.fromJSON(jsonObject);
-                            tweets.add(twiit);
-                            tweetAdapter.notifyItemInserted(tweets.size() - 1);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+
 
 
             }

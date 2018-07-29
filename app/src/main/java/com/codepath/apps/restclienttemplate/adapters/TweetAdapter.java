@@ -44,8 +44,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View twiitView = inflater.inflate(R.layout.item_tweet,parent,false);
-        ViewHolder viewHolder = new ViewHolder(twiitView);
+        View tweetView = inflater.inflate(R.layout.item_tweet,parent,false);
+        ViewHolder viewHolder = new ViewHolder(tweetView);
         return viewHolder;
     }
 
@@ -55,15 +55,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         //get the data according to position
         Tweet tweet = mTweets.get(position);
         //populate the views according to position
-        holder.tvUserName.setText(tweet.user.name);
+        //holder.tvUserName.setText(tweet.user.name);
         holder.tvBody.setText(tweet.body);
         holder.tvTimestamp.setText(getRelativeTimeAgo(tweet.createdAt));
-        holder.tvScreenName.setText("@" + tweet.user.screenName);
-        Glide.with(context)
-                .load(tweet.user.profileImageUrl)
-                .apply(new RequestOptions().transforms(new CenterCrop(),
-                        new RoundedCorners(10)))
-                .into(holder.ivProfileImage);
+        //holder.tvScreenName.setText("@" + tweet.user.screenName);
+        //Glide.with(context)
+        //        .load(tweet.user.profileImageUrl)
+        //        .apply(new RequestOptions().transforms(new CenterCrop(),
+        //                new RoundedCorners(10)))
+        //        .into(holder.ivProfileImage);
 
         holder.itemView.setOnClickListener(view -> {
             Intent i = new Intent(context, DetailActivity.class);

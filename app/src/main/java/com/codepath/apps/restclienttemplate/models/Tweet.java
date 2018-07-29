@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
@@ -32,5 +33,12 @@ public class Tweet {
         //tweet.extendedEntities = ExtendedEntities.fromJSON
         return tweet;
 
+    }
+
+    public static Tweet fromJSONArray(JSONArray jsonArray) throws JSONException {
+        Tweet tweet = new Tweet();
+        tweet.body = jsonArray.getJSONObject(0).getString("text");
+        tweet.createdAt = jsonArray.getJSONObject(0).getString("created_at");
+        return tweet;
     }
 }
