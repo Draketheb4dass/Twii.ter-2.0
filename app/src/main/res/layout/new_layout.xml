@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="130dp">
 
+        <!--android:background=""
+            app:contentScrim="" -->
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:titleEnabled="false"
-            android:background=""
-            app:contentScrim=""
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
