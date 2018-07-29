@@ -105,22 +105,15 @@ public class SearchActivity extends AppCompatActivity
 
                 try {
                     JSONArray jsonArray = response.getJSONArray("statuses");
+                    //Iterate through all the result
                     for (int i = 0; jsonArray.length() > i; i++) {
-                        String lenght = String.valueOf(jsonArray.length());
-                        Toast.makeText(SearchActivity.this, lenght, Toast.LENGTH_SHORT).show();
                         Tweet tweet = Tweet.fromJSONArray(jsonArray, i);
                         tweets.add(tweet);
                         tweetAdapter.notifyItemInserted(tweets.size() - 1);
                     }
-
                 }catch(JSONException e){
                     e.printStackTrace();
                 }
-
-
-
-
-
             }
 
             @Override
