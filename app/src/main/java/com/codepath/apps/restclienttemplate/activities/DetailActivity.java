@@ -23,6 +23,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.parceler.Parcels;
 
+import cz.msebera.android.httpclient.Header;
+
 public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener{
     ImageView ivProfileImage;
     TextView tvUserName;
@@ -30,6 +32,10 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
     TextView tvName;
     ImageView ivDetailImage;
     ImageButton ibReply;
+    ImageButton ibRetweet;
+    ImageButton ibFav;
+    ImageButton ibShare;
+
     TweeterClient client;
     long tweeId;
     Tweet tweet;
@@ -71,23 +77,75 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
         tvName.setText(tweet.user.name);
         ivDetailImage = findViewById(R.id.ivDetailImage);
 
-        ibReply = findViewById(R.id.ib_Reply);
-        ibReply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(DetailActivity.this, "reply", Toast.LENGTH_SHORT).show();
+        ibReply = findViewById(R.id.ibReply);
+        ibReply.setOnClickListener(this::onClick);
+        ibRetweet = findViewById(R.id.ibRetweet);
+        ibRetweet.setOnClickListener(this::onClick);
+        ibFav = findViewById(R.id.ibFav);
+        ibFav.setOnClickListener(this::onClick);
+        ibShare = findViewById(R.id.ibShare);
+        ibShare.setOnClickListener(this::onClick);
+
+
+
+
+
+
+    }
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case  R.id.ibReply: {
+                Toast.makeText(DetailActivity.this,
+                        "reply", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+            case R.id.ibRetweet: {
+                Toast.makeText(DetailActivity.this,
+                        "Retweet", Toast.LENGTH_SHORT).show();
                 tweeId = tweet.tweetId;
                 onPostRetweet(tweeId);
-
+                break;
             }
-        });
 
+            case R.id.ibFav: {
+                Toast.makeText(DetailActivity.this,
+                        "Like", Toast.LENGTH_SHORT).show();
+                tweeId = tweet.tweetId;
+                onPostRetweet(tweeId);
+                break;
+            }
 
+            case R.id.ibShare: {
+                Toast.makeText(DetailActivity.this,
+                        "Shared", Toast.LENGTH_SHORT).show();
+                tweeId = tweet.tweetId;
+                onPostRetweet(tweeId);
+                break;
+            }
+
+            //.... etc
+        }
     }
 
     public void onPostRetweet(long tweetId) {
         client = new TweeterClient(this);
-        client.postRetweet(null, tweetId);
+        client.postRetweet(new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody,
+                                  Throwable error) {
+
+            }
+        }, tweetId);
 
     }
 
