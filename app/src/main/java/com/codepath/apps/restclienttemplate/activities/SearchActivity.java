@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.restclienttemplate.R;
@@ -101,16 +102,8 @@ public class SearchActivity extends AppCompatActivity
         client.getSearchResult(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                //Log.d("TwiiterClientObject", response.toString());
-                //try {
-                //    JSONObject jsonObject = response.getJSONObject("statuses");
-//
-                //            Tweet twiit = Tweet.fromJSON(jsonObject);
-                //            tweets.add(twiit);
-                //            tweetAdapter.notifyItemInserted(tweets.size() - 1);
-                //        } catch (JSONException e) {
-                //            e.printStackTrace();
-                //        }
+                String lenght = String.valueOf(response.length());
+                Toast.makeText(SearchActivity.this, lenght, Toast.LENGTH_SHORT).show();
                 try {
                     JSONArray jsonArray = response.getJSONArray("statuses");
                     Tweet tweet = Tweet.fromJSONArray(jsonArray);
@@ -127,21 +120,7 @@ public class SearchActivity extends AppCompatActivity
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                //Log.d("TwiiterClientArray", response.toString());
-                //iterate through the JSON array
-                 //for each entry, deserialize JSON object
-                //for (int i = 0; i < response.length(); i++ ) {
-                //    //convert each object to a Tweet model
-                //    //add that tweet model to our data source
-                //    //notify the adapter that we've added an item
-                //    try {
-                //        Tweet twiit = Tweet.fromJSON(response.getJSONObject(i));
-                //        tweets.add(twiit);
-                //        tweetAdapter.notifyItemInserted(tweets.size() - 1);
-                //    } catch (JSONException e){
-                //        e.printStackTrace();
-                //    }
-                //}
+
             }
 
             @Override

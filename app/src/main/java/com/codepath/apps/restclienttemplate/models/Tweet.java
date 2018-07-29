@@ -34,7 +34,7 @@ public class Tweet {
         return tweet;
 
     }
-
+    //deserialize JSONArray
     public static Tweet fromJSONArray(JSONArray jsonArray) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = jsonArray.getJSONObject(0).getString("text");
