@@ -39,7 +39,7 @@ public class TimelineActivity extends AppCompatActivity
         setSupportActionBar(myToolbar);
         myToolbar.setOnMenuItemClickListener(this);
         myToolbar.setLogo(R.drawable.ic_twitterlogo);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         //get the view Pager
         ViewPager vpPager = findViewById(R.id.viewpager);

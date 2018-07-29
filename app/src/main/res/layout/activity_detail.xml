@@ -73,6 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBodyDetail"
         app:layout_constraintVertical_bias="0.0"
+        android:background="#00000000"
         android:src="@drawable/ic_reply" />
 
     <ImageButton
@@ -84,6 +85,7 @@
         app:layout_constraintEnd_toStartOf="@+id/ibFav"
         app:layout_constraintStart_toEndOf="@+id/ib_Reply"
         app:layout_constraintTop_toBottomOf="@+id/tvBodyDetail"
+        android:background="#00000000"
         android:src="@drawable/ic_retweet" />
 
     <ImageButton
@@ -94,6 +96,7 @@
         app:layout_constraintEnd_toStartOf="@+id/ibShare"
         app:layout_constraintStart_toEndOf="@+id/ibRetweet"
         app:layout_constraintTop_toBottomOf="@+id/tvBodyDetail"
+        android:background="#00000000"
         android:src="@drawable/ic_fav" />
 
     <ImageButton
@@ -105,6 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ibFav"
         app:layout_constraintTop_toBottomOf="@+id/tvBodyDetail"
+        android:background="#00000000"
         android:src="@drawable/ic_share"/>
 
 </android.support.constraint.ConstraintLayout>
