@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -52,6 +53,9 @@ public class SearchActivity extends AppCompatActivity
         myToolbar = findViewById(R.id.timeline_toolbar);
         setSupportActionBar(myToolbar);
         myToolbar.setOnMenuItemClickListener(this);
+        String query = getIntent().getStringExtra("query");
+        Objects.requireNonNull(getSupportActionBar())
+                .setTitle("Result for: " + query);
 
         client = TweeterApp.getRestClient(getBaseContext());
         // find the recyclerView
@@ -77,7 +81,6 @@ public class SearchActivity extends AppCompatActivity
         rvTweets.addOnScrollListener(scrollListener);
         //set the adapter
         rvTweets.setAdapter(tweetAdapter);
-        String query = getIntent().getStringExtra("query");
         populateSearch(query);
     }
 
