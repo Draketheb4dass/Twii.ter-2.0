@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TweeterClient;
@@ -58,6 +59,12 @@ public class ComposeFragment extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         client = TweeterApp.getRestClient(getContext());
+        etTwiit = view.findViewById(R.id.etTwiit);
+        Bundle bundle = this.getArguments();
+        assert bundle != null;
+        String toUser = bundle.getString("toUser");
+        etTwiit.setText("@" + toUser, TextView.BufferType.EDITABLE);
+
 
        // profileImage = view.findViewById(R.id.ivProfileImage);
        // Glide.with(getContext())
@@ -71,12 +78,13 @@ public class ComposeFragment extends DialogFragment {
         Button mBtnSubmitTwiit = view.findViewById(R.id.btnSubmit);
         mBtnSubmitTwiit.setOnClickListener(
                 v -> {
-                    etTwiit = view.findViewById(R.id.etTwiit);
                     String status = etTwiit.getText().toString();
-                    //ComposeListener listener = (ComposeListener) getActivity();
-                    //assert listener != null;
-                    onStatusPosted(status);
+                    long tweetId = -1;
+                    if (bundle != null) {
+                        tweetId = bundle.getLong("tweetId", -1);
+                    }
 
+                    onStatusPosted(tweetId, status);
                     dismiss();
                 }
         );
@@ -128,7 +136,7 @@ public class ComposeFragment extends DialogFragment {
 
     }
 
-    private void onStatusPosted(String status) {
+    private void onStatusPosted(long tweetId, String status) {
         client.postStatus(new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode,
@@ -142,7 +150,7 @@ public class ComposeFragment extends DialogFragment {
                                   byte[] responseBody,
                                   Throwable error) {
             }
-        }, status);
+        },tweetId, status);
         }
 
 

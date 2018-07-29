@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate.activities;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.ProfileActivity;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TweeterClient;
+import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -97,6 +99,15 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
             case  R.id.ibReply: {
                 Toast.makeText(DetailActivity.this,
                         "reply", Toast.LENGTH_SHORT).show();
+                tweeId = tweet.tweetId;
+                FragmentManager fm = getSupportFragmentManager();
+                ComposeFragment composeFragment =
+                        ComposeFragment.newInstance("Send a twiit");
+                Bundle arguments = new Bundle();
+                arguments.putLong("tweetId", tweeId);
+                arguments.putString("toUser", tweet.user.screenName);
+                composeFragment.setArguments(arguments);
+                composeFragment.show(fm, "fragment_compose");
                 break;
             }
 
@@ -111,8 +122,6 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
             case R.id.ibFav: {
                 Toast.makeText(DetailActivity.this,
                         "Like", Toast.LENGTH_SHORT).show();
-                tweeId = tweet.tweetId;
-                onPostRetweet(tweeId);
                 break;
             }
 
