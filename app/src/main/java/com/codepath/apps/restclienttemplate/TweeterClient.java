@@ -105,6 +105,7 @@ public class TweeterClient extends OAuthBaseClient {
                 getApiUrl("search/tweets.json");
 	    RequestParams params = new RequestParams();
 	    params.put("q", query);
+	    params.put("count", 2);
 	    client.get(apiUrl, params, handler);
     }
 

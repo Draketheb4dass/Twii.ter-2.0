@@ -27,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -45,10 +46,9 @@ public class SearchActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+        setContentView(R.layout.activity_search);
         //Set custom AppBar
         myToolbar = findViewById(R.id.timeline_toolbar);
-        myToolbar.inflateMenu(R.menu.menu_timeline);
         setSupportActionBar(myToolbar);
         myToolbar.setOnMenuItemClickListener(this);
 
@@ -76,6 +76,8 @@ public class SearchActivity extends AppCompatActivity
         rvTweets.addOnScrollListener(scrollListener);
         //set the adapter
         rvTweets.setAdapter(tweetAdapter);
+        String query = getIntent().getStringExtra("query");
+        populateSearch(query);
     }
 
 
@@ -99,27 +101,26 @@ public class SearchActivity extends AppCompatActivity
         client.getSearchResult(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("TwiiterClient", response.toString());
+                Log.d("TwiiterClientObject", response.toString());
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                //Log.d("TwiiterClient", response.toString());
+                Log.d("TwiiterClientArray", response.toString());
                 //iterate through the JSON array
-                // for each entry, deserialize JSON object
-                for (int i = 0; i < response.length(); i++ ) {
-                    //convert each object to a Twiit model
-                    //add that twiit model to our data source
-                    //notify the adapter that we've added an item
-                    try {
-                        Tweet twiit = Tweet.fromJSON(response.getJSONObject(i));
-                        tweets.add(twiit);
-                        tweetAdapter.notifyItemInserted(tweets.size() - 1);
-                    } catch (JSONException e){
-                        e.printStackTrace();
-                    }
-                }
-
+                 //for each entry, deserialize JSON object
+                //for (int i = 0; i < response.length(); i++ ) {
+                //    //convert each object to a Tweet model
+                //    //add that tweet model to our data source
+                //    //notify the adapter that we've added an item
+                //    try {
+                //        Tweet twiit = Tweet.fromJSON(response.getJSONObject(i));
+                //        tweets.add(twiit);
+                //        tweetAdapter.notifyItemInserted(tweets.size() - 1);
+                //    } catch (JSONException e){
+                //        e.printStackTrace();
+                //    }
+                //}
             }
 
             @Override

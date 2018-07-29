@@ -99,7 +99,9 @@ public class TimelineActivity extends AppCompatActivity
                  searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                      @Override
                      public boolean onQueryTextSubmit(String query) {
-                         //onTweetSearch(null);
+                         Intent i = new Intent(getBaseContext(), SearchActivity.class);
+                         i.putExtra("query", query);
+                         startActivity(i);
                          searchView.clearFocus();
                          return true;
                      }
