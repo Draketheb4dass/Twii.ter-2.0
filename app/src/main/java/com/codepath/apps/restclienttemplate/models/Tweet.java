@@ -39,6 +39,7 @@ public class Tweet {
         Tweet tweet = new Tweet();
         tweet.body = jsonArray.getJSONObject(0).getString("text");
         tweet.createdAt = jsonArray.getJSONObject(0).getString("created_at");
+        tweet.user = User.fromJSON(jsonArray.getJSONObject(0).getJSONObject("user"));
         return tweet;
     }
 }
