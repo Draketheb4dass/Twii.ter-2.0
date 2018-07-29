@@ -35,11 +35,11 @@ public class Tweet {
 
     }
     //deserialize JSONArray
-    public static Tweet fromJSONArray(JSONArray jsonArray) throws JSONException {
+    public static Tweet fromJSONArray(JSONArray jsonArray, int index) throws JSONException {
         Tweet tweet = new Tweet();
-        tweet.body = jsonArray.getJSONObject(0).getString("text");
-        tweet.createdAt = jsonArray.getJSONObject(0).getString("created_at");
-        tweet.user = User.fromJSON(jsonArray.getJSONObject(0).getJSONObject("user"));
+        tweet.body = jsonArray.getJSONObject(index).getString("text");
+        tweet.createdAt = jsonArray.getJSONObject(index).getString("created_at");
+        tweet.user = User.fromJSON(jsonArray.getJSONObject(index).getJSONObject("user"));
         return tweet;
     }
 }
