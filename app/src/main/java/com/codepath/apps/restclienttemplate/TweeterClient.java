@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.codepath.oauth.OAuthBaseClient;
@@ -107,6 +108,14 @@ public class TweeterClient extends OAuthBaseClient {
 	    params.put("q", query);
 	    params.put("count", 15);
 	    client.get(apiUrl, params, handler);
+    }
+
+    public boolean postRetweet(AsyncHttpResponseHandler handler, long tweetId){
+        RequestParams params = new RequestParams();
+        params.put("id", tweetId);
+        String apiUrl = getApiUrl("statuses/retweet/" + tweetId + ".json");
+        client.post(apiUrl, params, handler);
+        return true;
     }
 
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
