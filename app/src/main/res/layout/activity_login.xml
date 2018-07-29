@@ -9,6 +9,14 @@
     android:background="@color/colorPrimary"
     tools:context=".activities.LoginActivity" >
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="114dp"
+        android:src="@drawable/ic_twitterlogo" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,5 +27,15 @@
         android:textColor="@color/white"
         android:onClick="loginToRest"
         android:text="@string/login_label" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="249dp"
+        android:text="@string/please_login"
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

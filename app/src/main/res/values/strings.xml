@@ -14,5 +14,6 @@
     <string name="timestamp">Timestamp</string>
     <string name="text_body">TextBody</string>
     <string name="action_search">search</string>
+    <string name="please_login">Welcome to Twitter, Please Login</string>
 
 </resources>
