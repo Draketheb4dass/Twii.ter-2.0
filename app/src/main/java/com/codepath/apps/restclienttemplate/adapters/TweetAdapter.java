@@ -1,23 +1,32 @@
 package com.codepath.apps.restclienttemplate.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.TweeterClient;
 import com.codepath.apps.restclienttemplate.activities.DetailActivity;
+import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.parceler.Parcels;
 
@@ -26,12 +35,17 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import cz.msebera.android.httpclient.Header;
+
 /**
  * Created by drake on 7/19/18
  */
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     private List<Tweet> mTweets;
     Context context;
+    long tweeId;
+    Tweet tweet;
+    TweeterClient client;
     //passing the tweets array to the constructor
     public TweetAdapter(List<Tweet> tweets) {
         mTweets = tweets;
@@ -70,6 +84,38 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             i.putExtra("tweet", Parcels.wrap(tweet));
             context.startActivity(i);
         });
+
+        //reply to tweet
+        holder.ibReply.setOnClickListener(v -> {
+            tweeId = tweet.tweetId;
+            //Call Compose fragment and pass data to reply to tweet
+            FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+            ComposeFragment composeFragment =
+                    ComposeFragment.newInstance("Send a twiit");
+            Bundle arguments = new Bundle();
+            arguments.putLong("tweetId", tweeId);
+            arguments.putString("toUser", tweet.user.screenName);
+            composeFragment.setArguments(arguments);
+            composeFragment.show(fm, "fragment_compose");
+        });
+
+        //retweet
+        holder.ibRetweet.setOnClickListener(v -> {
+            Toast.makeText(context,
+                    "Retweet", Toast.LENGTH_SHORT).show();
+            tweeId = tweet.tweetId;
+            onPostRetweet(tweeId);
+        });
+
+        //Fav
+        holder.ibFav.setOnClickListener(v -> Toast.makeText(context,
+                "Like", Toast.LENGTH_SHORT).show());
+
+        //Share
+        holder.ibShare.setOnClickListener(v -> Toast.makeText(context,
+                "Shared", Toast.LENGTH_SHORT).show());
+
+
     }
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
@@ -92,6 +138,27 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         return relativeDate;
     }
 
+    public void onPostRetweet(long tweetId) {
+        client = new TweeterClient(context);
+        client.postRetweet(new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody,
+                                  Throwable error) {
+
+            }
+        }, tweetId);
+
+    }
+
     @Override
     public int getItemCount() {
         return mTweets.size();
@@ -105,6 +172,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         public TextView tvTimestamp;
         public TextView tvScreenName;
 
+        ImageButton ibReply;
+        ImageButton ibRetweet;
+        ImageButton ibFav;
+        ImageButton ibShare;
+
         public ViewHolder(View itemView) {
             super(itemView);
         //perform findViewById lookups
@@ -114,6 +186,10 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvTimestamp = itemView.findViewById(R.id.tvTimeStamp);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
 
-        }
+            ibReply = itemView.findViewById(R.id.ibReply);
+            ibRetweet = itemView.findViewById(R.id.ibRetweet);
+            ibFav = itemView.findViewById(R.id.ibFav);
+            ibShare = itemView.findViewById(R.id.ibShare);
+            }
     }
 }

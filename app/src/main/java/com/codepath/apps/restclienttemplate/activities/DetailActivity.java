@@ -60,13 +60,10 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
                 new RoundedCorners(10)))
                 .into(ivProfileImage);
 
-        ivProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), ProfileActivity.class);
-                i.putExtra("screen_name", tweet.user.screenName);
-                startActivity(i);
-            }
+        ivProfileImage.setOnClickListener(v -> {
+            Intent i = new Intent(getBaseContext(), ProfileActivity.class);
+            i.putExtra("screen_name", tweet.user.screenName);
+            startActivity(i);
         });
 
         tvUserName = findViewById(R.id.tvUsernameDetail);
@@ -88,18 +85,13 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
         ibShare = findViewById(R.id.ibShare);
         ibShare.setOnClickListener(this::onClick);
 
-
-
-
-
-
     }
+
     public void onClick(View v) {
         switch (v.getId()) {
             case  R.id.ibReply: {
-                Toast.makeText(DetailActivity.this,
-                        "reply", Toast.LENGTH_SHORT).show();
                 tweeId = tweet.tweetId;
+                //Call Compose fragment and pass data to reply to tweet
                 FragmentManager fm = getSupportFragmentManager();
                 ComposeFragment composeFragment =
                         ComposeFragment.newInstance("Send a twiit");
@@ -112,6 +104,7 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
             }
 
             case R.id.ibRetweet: {
+                //Retweet a tweet
                 Toast.makeText(DetailActivity.this,
                         "Retweet", Toast.LENGTH_SHORT).show();
                 tweeId = tweet.tweetId;
@@ -128,12 +121,9 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
             case R.id.ibShare: {
                 Toast.makeText(DetailActivity.this,
                         "Shared", Toast.LENGTH_SHORT).show();
-                tweeId = tweet.tweetId;
-                onPostRetweet(tweeId);
                 break;
             }
 
-            //.... etc
         }
     }
 

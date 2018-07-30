@@ -23,7 +23,6 @@ import java.util.Objects;
 
 public class TimelineActivity extends AppCompatActivity
         implements Toolbar.OnMenuItemClickListener
-        //ComposeFragment.ComposeListener
 {
     Toolbar myToolbar;
     SwipeRefreshLayout mSwipeRefreshLayout;
