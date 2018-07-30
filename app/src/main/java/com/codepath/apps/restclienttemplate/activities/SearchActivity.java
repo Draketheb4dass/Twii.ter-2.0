@@ -30,6 +30,8 @@ import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
+import static com.raizlabs.android.dbflow.config.FlowManager.getContext;
+
 /**
  * Created by drake on 7/28/18
  */
@@ -64,6 +66,8 @@ public class SearchActivity extends AppCompatActivity
         //RecyclerView setup (layout manager, use adapter)
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this);
         rvTweets.setLayoutManager(linearLayoutManager);
+        rvTweets.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL_LIST));
         // Retain an instance so that you can call `resetState()` for fresh searches
         EndlessRecyclerViewScrollListener scrollListener =
                 new EndlessRecyclerViewScrollListener(linearLayoutManager) {
