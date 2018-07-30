@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,9 +22,12 @@ import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TweeterClient;
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.utils.PatternEditableBuilder;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.parceler.Parcels;
+
+import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -84,6 +88,14 @@ public class DetailActivity extends AppCompatActivity implements Toolbar.OnMenuI
         ibFav.setOnClickListener(this::onClick);
         ibShare = findViewById(R.id.ibShare);
         ibShare.setOnClickListener(this::onClick);
+
+        new PatternEditableBuilder().
+                addPattern(Pattern.compile("\\@(\\w+)"), Color.BLUE,
+                        text -> Toast.makeText(getBaseContext(), "Clicked username: " + text,
+                                Toast.LENGTH_SHORT).show()).
+                addPattern(Pattern.compile("\\#(\\w+)"), Color.CYAN,
+                        text -> Toast.makeText(getBaseContext(), "Clicked hashtag: " + text,
+                                Toast.LENGTH_SHORT).show()).into(tvBody);
 
     }
 

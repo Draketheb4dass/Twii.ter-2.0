@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -26,6 +27,7 @@ import com.codepath.apps.restclienttemplate.TweeterClient;
 import com.codepath.apps.restclienttemplate.activities.DetailActivity;
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.utils.PatternEditableBuilder;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.parceler.Parcels;
@@ -34,6 +36,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -84,6 +87,14 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             i.putExtra("tweet", Parcels.wrap(tweet));
             context.startActivity(i);
         });
+
+        new PatternEditableBuilder().
+                addPattern(Pattern.compile("\\@(\\w+)"), Color.BLUE,
+                        text -> Toast.makeText(context, "Clicked username: " + text,
+                                Toast.LENGTH_SHORT).show()).
+                addPattern(Pattern.compile("\\#(\\w+)"), Color.CYAN,
+                        text -> Toast.makeText(context, "Clicked hashtag: " + text,
+                                Toast.LENGTH_SHORT).show()).into((holder.tvBody));
 
         //reply to tweet
         holder.ibReply.setOnClickListener(v -> {
