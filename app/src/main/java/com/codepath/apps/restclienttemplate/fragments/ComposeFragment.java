@@ -63,7 +63,9 @@ public class ComposeFragment extends DialogFragment {
         Bundle bundle = this.getArguments();
         assert bundle != null;
         String toUser = bundle.getString("toUser");
-        etTwiit.setText("@" + toUser, TextView.BufferType.EDITABLE);
+        if(!(toUser ==null)) {
+            etTwiit.setText("@" + toUser, TextView.BufferType.EDITABLE);
+        }
 
 
        // profileImage = view.findViewById(R.id.ivProfileImage);

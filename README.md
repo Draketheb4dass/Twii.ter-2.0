@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Draketheb4dass/Twii.ter-2.0.svg?branch=master)](https://travis-ci.org/Draketheb4dass/Twii.ter-2.0)
+
 # Project 4 - *Twii.ter 2.0*
 
 **Twii.ter 2.0** is an android app that allows a user to view home and mentions timelines, view user profiles with user timelines, as well as compose and post a new tweet. The app utilizes [Twitter REST API](https://developer.twitter.com/en/docs/api-reference-index).
