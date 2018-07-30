@@ -80,13 +80,13 @@
         android:layout_marginStart="60dp"
         android:src="@drawable/ic_retweet" />
 
-    <ImageButton
+    <CheckBox
         android:id="@+id/ibFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#00000000"
+        android:button="@drawable/like"
         android:layout_marginStart="60dp"
-        android:src="@drawable/ic_fav" />
+        />
 
     <ImageButton
         android:id="@+id/ibShare"

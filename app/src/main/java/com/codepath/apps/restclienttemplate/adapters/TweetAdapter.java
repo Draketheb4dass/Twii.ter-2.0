@@ -1,6 +1,5 @@
 package com.codepath.apps.restclienttemplate.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,7 +43,7 @@ import cz.msebera.android.httpclient.Header;
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     private List<Tweet> mTweets;
     Context context;
-    long tweeId;
+    long tweetId;
     Tweet tweet;
     TweeterClient client;
     //passing the tweets array to the constructor
@@ -87,13 +87,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
         //reply to tweet
         holder.ibReply.setOnClickListener(v -> {
-            tweeId = tweet.tweetId;
+            tweetId = tweet.tweetId;
             //Call Compose fragment and pass data to reply to tweet
             FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
             ComposeFragment composeFragment =
                     ComposeFragment.newInstance("Send a twiit");
             Bundle arguments = new Bundle();
-            arguments.putLong("tweetId", tweeId);
+            arguments.putLong("tweetId", tweetId);
             arguments.putString("toUser", tweet.user.screenName);
             composeFragment.setArguments(arguments);
             composeFragment.show(fm, "fragment_compose");
@@ -103,13 +103,25 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         holder.ibRetweet.setOnClickListener(v -> {
             Toast.makeText(context,
                     "Retweet", Toast.LENGTH_SHORT).show();
-            tweeId = tweet.tweetId;
-            onPostRetweet(tweeId);
+            tweetId = tweet.tweetId;
+            onPostRetweet(tweetId);
         });
 
         //Fav
-        holder.ibFav.setOnClickListener(v -> Toast.makeText(context,
-                "Like", Toast.LENGTH_SHORT).show());
+        holder.ibFav.setOnClickListener(v -> {
+           //Toast.makeText(context,
+           //        "Like", Toast.LENGTH_SHORT).show();
+           //tweetId = tweet.tweetId;
+           //if((holder.ibFav).getTag().toString().trim().equals("on")){
+           //    holder.ibFav.setTag("off");
+           //    onPostLike(tweetId);
+           //}
+           //else if((holder.ibFav).getTag().toString().trim().equals("off")){
+           //    holder.ibFav.setTag("on");
+           //    onPostUnlike(tweetId);
+           //}
+        });
+
 
         //Share
         holder.ibShare.setOnClickListener(v -> Toast.makeText(context,
@@ -159,6 +171,49 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
     }
 
+    public void onPostLike(long tweetId) {
+        client = new TweeterClient(context);
+        client.postLike(new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody,
+                                  Throwable error) {
+
+            }
+        }, tweetId);
+
+    }
+
+    public void onPostUnlike(long tweetId) {
+        client = new TweeterClient(context);
+        client.postUnlike(new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  byte[] responseBody,
+                                  Throwable error) {
+
+            }
+        }, tweetId);
+
+    }
+
+
     @Override
     public int getItemCount() {
         return mTweets.size();
@@ -174,7 +229,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
         ImageButton ibReply;
         ImageButton ibRetweet;
-        ImageButton ibFav;
+        CheckBox ibFav;
         ImageButton ibShare;
 
         public ViewHolder(View itemView) {
