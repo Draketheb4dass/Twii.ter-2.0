@@ -13,11 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.codepath.apps.restclienttemplate.ProfileActivity;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;
 import com.codepath.apps.restclienttemplate.fragments.TweetsPagerAdapter;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.util.Objects;
 

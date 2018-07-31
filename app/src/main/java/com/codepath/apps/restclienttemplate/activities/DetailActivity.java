@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.codepath.apps.restclienttemplate.ProfileActivity;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TweeterClient;
 import com.codepath.apps.restclienttemplate.fragments.ComposeFragment;

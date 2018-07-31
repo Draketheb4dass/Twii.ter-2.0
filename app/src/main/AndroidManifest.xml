@@ -86,7 +86,7 @@
             android:name=".activities.DetailActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activities.ProfileActivity"
             android:theme="@style/AppTheme">
 
         </activity>
